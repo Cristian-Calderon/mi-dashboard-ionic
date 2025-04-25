@@ -1,0 +1,99 @@
+/* src/components/SparkLine.css */
+
+/* Contenedor principal con gradiente de fondo y color de texto */
+.box-sparkline {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 16px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    container-type: inline-size;
+  }
+  
+  /* Detalles: icono, título y valor */
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .details > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .details ion-icon {
+    font-size: 2rem;
+    --ionicon-stroke-width: 24px;
+  }
+  
+  .details > div > span {
+    font-size: 0.8rem;
+  }
+  
+  .details > span {
+    font-size: 2.9rem;
+  }
+  
+  /* Sparkline chart ocupa todo el ancho */
+  .sparkline-chart {
+    width: 100%;
+    min-width: 50px;
+  }
+  
+  /* Container Query: cuando el componente tiene al menos 324px de ancho, alineamos en fila */
+  @container box-sparkline (min-width: 324px) {
+    .details {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .details > span {
+      font-size: 6cqmax;
+    }
+    .details ion-icon {
+      font-size: 4cqmax;
+    }
+    .details > div > span {
+      font-size: 2cqmax;
+    }
+  }
+  
+  /* Media Query: pantallas grandes */
+  @media (min-width: 992px) {
+    /* Container Query para anchos <= 356px */
+    @container box-sparkline (max-width: 356px) {
+      .details {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .details > span {
+        font-size: max(1.7rem, 16cqw);
+      }
+      .details ion-icon {
+        font-size: max(1.7rem, 5cqw);
+      }
+      .details > div > span {
+        font-size: max(0.8rem, 5cqw);
+      }
+    }
+  }
+  
+  /* Gradientes para bgColor */
+  .gradient-blue { background-image: linear-gradient(135deg, #071c49 10%, #0396FF 100%); }
+  .gradient-green { background-image: linear-gradient(135deg, #054d43 10%, #6be084 100%); }
+  .gradient-orange { background-image: linear-gradient(135deg, #f31b4a 10%, #e78f30 100%); }
+  .gradient-pink { background-image: linear-gradient(135deg, #383ead 10%, #EE9AE5 100%); }
+  
+  /* Colores de texto */
+  .white { color: white; }
+  .black { color: black; }
+  

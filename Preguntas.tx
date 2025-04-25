@@ -1,0 +1,909 @@
+
+3.2. COMPONENTE PROPIO - ApexCharts (sparkline) 
+
+
+Para integrar un componente propio nos vamos a basar en el componente SparkLine.vue desarrollado en la sección Componentes/Responsive.
+
+1. Instala las librerías apexchart y vue-apexcharts en la raíz del proyecto y ejecútalo:
+
+npm install apexcharts vue-apexcharts 
+ionic serve
+
+
+2. Si no has implementado el código del componente, revisa el ejercicio en el que se desarrolla. Si ya lo tienes, añade el componente en el siguiente directorio: /src/components/SparkLine.vue.
+
+3. Importa el componente que acabas de añadir, para que esté accesible desde la página del dashboard en la que estás trabajando, p.e: NegocioPage.vue.
+
+import SparkLine from '@/components/SparkLine.vue';
+
+4. Prepara las propiedades y datos que el componentes ha de mostrar:
+
+const sparkData1 = ref({
+  /* Propiedades del componente */
+  title: "CLICKS",
+  value: "1234",
+  bgColor: "gradient-blue",
+  textColor: "white",
+  iconName: "navigate-outline",
+  /* Propiedades del componentes interno de ApexChart */
+  chartOptions: {
+    chart: {
+      id: 'clicks',
+      type: 'area',
+      sparkline: { enabled: true },
+      dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 }
+    },
+    stroke: { curve: 'smooth', width: 3 },
+    colors: ['#fff'],
+    tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: () => '' } } }
+  },
+  chartSeries: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }],
+});
+
+5. Incorpora el complemento en la parte del template que desees:
+
+…
+<ion-col size="6" size-lg="3">
+  <div class="box">
+    <spark-line v-bind="sparkData1"/>
+  </div>
+ </ion-col>
+…
+
+6. El resultado final debería ser similar al siguiente:
+
+
+
+
+
+0. CREACIÓN DEL PROYECTO Y EL COMPONENTE
+
+1. Crea un proyecto nuevo a partir del template blank, instala las librerías apexchart y vue-apexcharts en la raíz del proyecto y ejecútalo:
+
+ionic start componentResponsive blank --type=vue
+
+cd componentResponsive
+
+npm install apexcharts vue3-apexcharts 
+
+ionic serve
+
+
+2. Crea el fichero src/components/SparkLine.vue y añádele el siguiente código. A continuación se explican las partes más relevantes del código del componente.
+
+SparkLine.vue
+<template>
+  <div :class="['box-sparkline', bgColor, textColor]">
+    <div class="details">
+      <div>
+        <ion-icon :name="iconName"></ion-icon>
+        <span>{{title}}</span>  
+      </div>
+      <span>{{value}}</span>
+    </div>
+    <vapexChart 
+      class="sparkline-chart"
+      :height="chartHeight" 
+      :options="chartOptions"
+      :series="chartSeries">
+    </vapexChart>
+  </div>
+</template>
+
+
+<script setup lang="ts">
+
+
+import { IonIcon } from '@ionic/vue';
+import { addIcons } from 'ionicons';
+import { navigateOutline, logoIonic, eyeOutline, peopleOutline, cashOutline } from 'ionicons/icons';
+import vapexChart from 'vue3-apexcharts';
+import { ref, watchEffect, onUnmounted } from 'vue';
+
+
+// 📌 Registrar iconos
+addIcons({
+  'logo-ionic': logoIonic,
+  'navigate-outline': navigateOutline,
+  'eye-outline': eyeOutline,
+  'people-outline': peopleOutline,
+  'cash-outline': cashOutline,
+});
+
+
+// 📌 Definir Props para datos dinámicos
+defineProps({
+  title: { type: String, default: 'Metrica',  },
+  value: { type: String, default: '#Value',   },
+  chartOptions: {type: Object, required: true, }, // Se espera un objeto de configuración de ApexCharts
+  chartSeries: { type: Array, required: true, }, // Se espera un array con los datos de la serie
+  bgColor: { type: String, default: '', },
+  textColor: { type: String, default: '', },
+  iconName: { type: String, default: 'logo-ionic', },
+});
+
+
+
+
+
+
+/******* Control altura gráfico según ancho ********************/
+
+
+const chartHeight = ref("50%");
+
+
+// Función que ajusta la altura dinámicamente
+const updateChartHeight = () => {
+  const width = window.innerWidth;
+
+
+  if (width < 576) chartHeight.value = "30%"; // Breakpoint xs
+  else if (width < 768) chartHeight.value = "40%"; // Breakpoint sm
+  else chartHeight.value = "50%"; // Breakpoint md y superiores
+};
+
+
+// Ejecutar al cargar y escuchar cambios en el tamaño de la ventana
+watchEffect(() => {
+  updateChartHeight();
+  window.addEventListener("resize", updateChartHeight);
+});
+
+
+// Limpiar el listener cuando el componente se desmonta
+onUnmounted(() => {
+  window.removeEventListener("resize", updateChartHeight);
+});
+
+
+/************************************************************ */
+
+
+</script>
+
+
+<style scoped>
+
+
+/* Mobile first */
+
+
+.box-sparkline{
+  display: flex;
+  flex-direction: column;
+ 
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  border-radius:5px;
+  container: box / inline-size;
+}
+
+
+.details{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.details > div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+
+.details > div > ion-icon{
+  font-size: 2rem;
+  --ionicon-stroke-width: 24px;
+}
+
+
+.details > div > span{ font-size: .8rem; }
+.details > span{ font-size: 2.9rem; }
+
+
+.sparkline-chart {
+  min-width: 50px;
+  width: 100%;
+}
+
+
+/* Siendo más ancho, pasamos dato a la derecha de título */
+
+
+@container box (width >= 324px) {
+  .details{
+    flex-direction: row;
+    justify-content: space-start;
+    align-items: start;
+    gap: 16px;
+  }
+
+
+  .details > span {
+    font-size: 6cqmax;
+  }
+  .details > div > ion-icon{
+    font-size: 4cqmax;
+  }
+  .details > div > span{
+    font-size: 2cqmax;
+  }
+}
+
+
+/* 🖥️ En pantallas grandes (>=lg=992) */
+@media (min-width: 992px) {
+  /* Si el componente no es muy ancho: detalles izquierda, datos derecha*/
+  @container box (width <= 356px){
+    .details{
+      flex-direction: row;
+      justify-content: space-start;
+      align-items: start;
+      gap: 16px;
+    }
+   /* Para anchos de contenedores muy pequeños */
+    .details > span {
+      font-size: max(1.7rem, 16cqw);
+    }
+    .details > div > ion-icon{
+      font-size: max(1.7rem, 5cqw);
+    }
+    .details > div > span{
+      font-size: max(0.8rem, 5cqw);
+    }
+  }
+}
+
+
+/* 🎨 Colores de fondo */
+.gradient-blue {background-image: linear-gradient( 135deg, #071c49 10%, #0396FF 100%);}
+.gradient-green {background-image: linear-gradient( 135deg, #054d43 10%, #6be084 100%);}
+.gradient-orange {background-image: linear-gradient( 135deg, #f31b4a 10%, #e78f30 100%);}
+.gradient-pink {background-image: linear-gradient( 135deg, #383ead 10%, #EE9AE5 100%);}
+
+
+.black{ color: black }
+.white{ color: white; }
+
+
+</style>
+
+
+1. ESTRUCTURA DEL COMPONENTE
+
+
+1. Estructura del template
+
+<template>
+  <div :class="['box-sparkline', bgColor, textColor]">
+    <div class="details">
+      <div>
+        <ion-icon :name="iconName"></ion-icon>
+        <span>{{title}}</span>  
+      </div>
+      <span>{{value}}</span>
+    </div>
+    <vapexChart class="sparkline-chart" :height="chartHeight" :options="chartOptions" :series="chartSeries"></vapexChart>
+  </div>
+</template>
+
+El componente muestra:
+✔️ Un Icono junto con un título descriptivo.
+✔️ Un valor numérico destacado.
+✔️ Un gráfico ApexCharts en modalidad sparkline.
+box-sparkline es el contenedor principal del componente.
+details agrupa el icono, título y valor.
+<vapexChart> renderiza el gráfico con propiedades dinámicas (options, series y height).
+
+
+
+
+2. Definir las Props (defineProps)
+
+// 📌 Definir Props para datos dinámicos
+defineProps({
+  title: { type: String, default: 'Metrica',  },
+  value: { type: String, default: '#Value',   },
+  chartOptions: {type: Object, required: true, }, // Objeto de configuración de ApexCharts
+  chartSeries: { type: Array, required: true, },  // Se espera un array con los datos de la serie
+  bgColor: { type: String, default: '', },
+  textColor: { type: String, default: '', },
+  iconName: { type: String, default: 'logo-ionic', },
+});
+
+Para hacer el componente reutilizable, permitimos que sus valores sean dinámicos:
+Estas props nos permiten personalizar el título, icono, colores, valores y configuración del gráfico.
+chartOptions y chartSeries son requeridas porque sin ellas el gráfico de ApexChart no funcionaría.
+
+3. Controlar la altura del gráfico según el ancho del dispositivo
+
+/******* Control altura gráfico según ancho ********************/
+const chartHeight = ref("50%");
+
+
+// Función que ajusta la altura dinámicamente
+const updateChartHeight = () => {
+  const width = window.innerWidth;
+
+
+  if (width < 576) chartHeight.value = "30%"; // Breakpoint xs
+  else if (width < 768) chartHeight.value = "40%"; // Breakpoint sm
+  else chartHeight.value = "50%"; // Breakpoint md y superiores
+};
+
+
+// Ejecutar al cargar y escuchar cambios en el tamaño de la ventana
+watchEffect(() => {
+  updateChartHeight();
+  window.addEventListener("resize", updateChartHeight);
+});
+
+
+// Limpiar el listener cuando el componente se desmonta
+onUnmounted(() => {
+  window.removeEventListener("resize", updateChartHeight);
+});
+/************************************************************ */
+
+Queremos que el gráfico tenga diferentes alturas según el ancho del dispositivo.
+
+chartHeight es una variable reactiva (ref()) que cambia dinámicamente.
+updateChartHeight() ajusta la altura según el tamaño de la pantalla.
+watchEffect() escucha los cambios de tamaño de la ventana.
+onUnmounted() elimina el listener cuando el componente se desmonta.
+
+En el momento de integrarlo en el template:
+<vapexChart 
+  class="sparkline-chart"
+  :height="chartHeight" 
+  :options="chartOptions"
+  :series="chartSeries">
+</vapexChart>
+
+Vinculamos la altura del gráfico con la variable reactiva chartHeight.
+Cada vez que chartHeight cambie, el gráfico se redimensionará automáticamente.
+
+
+
+4. Media Queries para adaptación a pantallas grandes
+
+/* 🖥️ En pantallas grandes (>=lg=992) */
+@media (min-width: 992px) {
+  /* Si el componente no es muy ancho: detalles izquierda, datos derecha*/
+  @container box (width <= 356px){
+    .details{
+      flex-direction: row;
+      justify-content: space-start;
+      align-items: start;
+      gap: 16px;
+    }
+    /* Para anchos de contenedores muy pequeños */
+    .details > span {
+      font-size: max(1.7rem, 16cqw);
+    }
+    .details > div > ion-icon{
+      font-size: max(1.7rem, 5cqw);
+    }
+    .details > div > span{
+      font-size: max(0.8rem, 5cqw);
+    }
+  }
+}
+
+Las media queries nos permiten aplicar estilos según el tamaño de la pantalla. En este caso, usamos @media (min-width: 992px) para ajustar el diseño en pantallas grandes (≥lg):
+Detectamos pantallas grandes (≥992px) con @media (min-width: 992px).
+Dentro de estas pantallas, aplicamos una container query para casos donde el componente tenga menos de 356px de ancho.
+En esos casos, alineamos los detalles en una fila, en lugar de en columna.
+
+5. Container Queries para flexibilidad dentro del componente
+
+@container box (width >= 324px) {
+  .details{
+    flex-direction: row;
+    justify-content: space-start;
+    align-items: start;
+    gap: 16px;
+  }
+
+
+  .details > span {
+    font-size: 6cqmax;
+  }
+  .details > div > ion-icon{
+    font-size: 4cqmax;
+  }
+  .details > div > span{
+    font-size: 2cqmax;
+  }
+}
+
+Las container queries nos permiten aplicar estilos según el tamaño del propio componente, en lugar del tamaño de la pantalla. Esto es útil para hacer componentes más independientes y reutilizables:
+
+Si el contenedor tiene más de 324px de ancho, los detalles se alinean en fila.
+cqmax es una unidad basada en el tamaño del contenedor para ajustar dinámicamente los tamaños de fuente.
+Se evita depender del tamaño de pantalla (@media), permitiendo más flexibilidad.
+
+Con esto queda listo el componente SparkLine.vue para ser integrado dinámicamente tantas veces como se desee.
+
+2. LAYOUT PARA INTERFAZ RESPONSIVE
+
+
+1. Implementa el siguiente código en el fichero HomePage.vue:
+
+HomePage.vue
+<template>
+  <ion-page>
+    <ion-header :translucent="true">
+      <ion-toolbar>
+        <ion-title>SparkLine Component</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+
+    <ion-content :fullscreen="true">
+      <ion-grid class="dashboard-grid">
+        <ion-row class="ion-row-1">
+          <ion-col size="6" size-lg="3">
+            <div class="box">
+              <spark-line
+                title="CLICKS"
+                value="1234"
+                :chartOptions="sparkOptionsExample"
+                :chartSeries="sparkSeriesExample"
+                bgColor="gradient-blue"
+                iconName="navigate-outline"
+              />
+            </div>
+          </ion-col>
+          <ion-col size="6" size-lg="3">
+            <div class="box">
+              <spark-line v-bind="sparkData2"/>
+            </div>
+          </ion-col>
+          <ion-col size="6" size-lg="3">
+            <div class="box">
+              <spark-line v-bind="sparkData3"/>
+            </div>
+          </ion-col>
+          <ion-col size="6" size-lg="3">
+            <div class="box">
+              <spark-line v-bind="sparkData4"/>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-row-2">
+          <ion-col size="6">
+            <div class="box">
+              <spark-line v-bind="sparkData1"/>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-row-3">
+          <ion-col size="12">
+            <div class="box">
+              <spark-line v-bind="sparkData1"/>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </ion-page>
+</template>
+
+
+<script setup lang="ts">
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol } from '@ionic/vue';
+
+
+import { ref } from 'vue';
+import SparkLine from '@/components/SparkLine.vue';
+
+
+// 📊 Configuración del gráfico Sparkline
+const sparkOptionsExample = ref({
+  chart: {
+    id: 'spark1',
+    type: 'area',
+    sparkline: { enabled: true },
+    dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 }
+  },
+  stroke: { curve: 'smooth', width: 3 },
+  colors: ['#fff'],
+ 
+  tooltip: {
+    theme: 'dark',
+    x: { show: false },
+    y: { title: { formatter: () => '' } }
+  },
+ 
+});
+const sparkSeriesExample = ref([{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }]);
+
+
+
+
+const sparkData1 = ref({
+  /* Propiedades del componente */
+  title: "CLICKS",
+  value: "1234",
+  bgColor: "gradient-blue",
+  textColor: "white",
+  iconName: "navigate-outline",
+  /* Propiedades del componentes interno de ApexChart */
+  chartOptions: {
+    chart: {
+      id: 'clicks',
+      type: 'area',
+      sparkline: { enabled: true },
+      dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 }
+    },
+    stroke: { curve: 'smooth', width: 3 },
+    colors: ['#fff'],
+    tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: () => '' } } }
+  },
+  chartSeries: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }],
+});
+
+
+const sparkData2 = ref({
+  /* Propiedades del componente */
+  title: "VIEWS",
+  value: "1982",
+  bgColor: "gradient-pink",
+  textColor: "white",
+  iconName: "eye-outline",
+  /* Propiedades del componentes interno de ApexChart */
+  chartOptions: {
+    chart: {
+      id: 'views',
+      type: 'bar',
+      sparkline: { enabled: true },
+      dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 }
+    },
+    stroke: { curve: 'smooth', width: 3 },
+    colors: ['#fff'],
+    tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: () => '' } } }
+  },
+  chartSeries: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }],
+});
+
+
+const sparkData3 = ref({
+  /* Propiedades del componente */
+  title: "LEADS",
+  value: "2011",
+  bgColor: "gradient-orange",
+  textColor: "white",
+  iconName: "people-outline",
+  /* Propiedades del componentes interno de ApexChart */
+  chartOptions: {
+    chart: {
+      id: 'leads',
+      type: '',
+      sparkline: { enabled: true },
+      dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 }
+    },
+    stroke: { curve: 'straight', width: 3 },
+    colors: ['#fff'],
+    tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: () => '' } } }
+  },
+  chartSeries: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }],
+});
+
+
+const sparkData4 = ref({
+  /* Propiedades del componente */
+  title: "SALES",
+  value: "627k€",
+  bgColor: "gradient-green",
+  textColor: "white",
+  iconName: "cash-outline",
+  /* Propiedades del componentes interno de ApexChart */
+  chartOptions: {
+    chart: {
+      id: 'sales',
+      type: 'area',
+      sparkline: { enabled: true },
+      dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 }
+    },
+    stroke: { curve: 'smooth', width: 3 },
+    colors: ['#fff'],
+    tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: () => '' } } }
+  },
+  chartSeries: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }],
+});
+
+
+</script>
+
+
+<style scoped>
+
+
+ion-row{
+  overflow: hidden;
+}
+
+
+ion-col {
+  max-height: 100%;
+  --ion-grid-column-padding:10px;
+}
+
+
+/* El contenido real de cada columna */
+.box {
+  background: #1E1E1E;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  border-radius:5px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+
+/* Aplicar altura total y por filas, solo en pantallas ≥ lg=992 */
+@media (min-width: 992px) {  
+  ion-grid{height: 100%;}
+  .ion-row-1{height: 20%; max-height: 20%;}
+  .ion-row-2{height: 30%; max-height: 30%;}
+  .ion-row-3{height: 50%; max-height: 50%;}
+}
+
+
+</style>
+
+La estructura de la interfaz se basa en el sistema de Grid de Ionic, que usa 12 columnas como referencia. Organizamos los ion-col de manera flexible, para que el mismo componente <SparkLine /> se integre en distintas dimensiones y se adapte automáticamente.
+
+Explicación de la estructura del Grid
+
+En pantallas grandes (≥lg), las métricas de la primera fila ocupan 3 columnas cada una (size-lg="3"), permitiendo 4 métricas en una fila.
+En pantallas medianas y pequeñas, cada métrica ocupa 6 columnas, ajustándose en dos filas de dos métricas.
+Las segundas y terceras filas muestran una métrica más grande, ocupando 6 o 12 columnas.
+
+2. Responsive: Tamaño y alineación de las métricas en el Grid
+
+<style scoped>
+
+
+ion-row{
+  overflow: hidden;
+}
+
+
+ion-col {
+  max-height: 100%;
+  --ion-grid-column-padding:10px;
+}
+
+
+/* El contenido real de cada columna */
+.box {
+  background: #1E1E1E;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  border-radius:5px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+
+/* Aplicar altura total y por filas, solo en pantallas ≥ lg=992 */
+@media (min-width: 992px) {  
+  ion-grid{height: 100%;}
+  .ion-row-1{height: 20%; max-height: 20%;}
+  .ion-row-2{height: 30%; max-height: 30%;}
+  .ion-row-3{height: 50%; max-height: 50%;}
+}
+
+
+</style>
+
+Explicación del CSS:
+
+Cada ion-row se ajusta automáticamente para no desbordar el contenido (overflow: hidden).
+Se establece un padding uniforme entre columnas (--ion-grid-column-padding: 10px).
+En pantallas grandes (≥992px), las filas tienen alturas definidas (max-height: 20%, 30%, 50%), asegurando que el dashboard se distribuya proporcionalmente.
+
+
+
+3. MÉTODOS DE INTEGRACIÓN MEDIANTE PROPS y BINDING DINÁMICO
+
+
+En este apartado, aprenderás dos formas de pasar datos a un componente en Vue:
+
+1️⃣ Usando props directamente en la etiqueta del componente.
+✔️ Útil para configuraciones rápidas.
+
+
+2️⃣ Usando v-bind para pasar un objeto con todas las propiedades.
+✔️ Mejora la organización y reutilización de código.
+
+1. Integración con props en la etiqueta
+
+<ion-col size="6" size-lg="3">
+  <div class="box">
+    <spark-line
+      title="CLICKS"
+      value="1234"
+      :chartOptions="sparkOptionsExample"
+      :chartSeries="sparkSeriesExample"
+      bgColor="gradient-blue"
+      iconName="navigate-outline"
+    />
+  </div>
+</ion-col>
+
+Explicación:
+
+Cada propiedad se pasa de forma explícita como un atributo en la etiqueta.
+Si el valor es una cadena, se pasa sin : (ej. title="CLICKS").
+Si el valor es una variable o un objeto, se usa : (ej. :chartOptions="sparkOptionsExample").
+
+Este método es útil cuando queremos configurar cada instancia del componente con valores específicos y diferenciados.
+
+1. Integración con v-bind para pasar un objeto
+
+Template:
+<ion-col size="6" size-lg="3">
+  <div class="box">
+    <spark-line v-bind="sparkData2"/>
+  </div>
+</ion-col>
+
+Lógica:
+const sparkData2 = ref({
+  /* Propiedades del componente */
+  title: "VIEWS",
+  value: "1982",
+  bgColor: "gradient-pink",
+  textColor: "white",
+  iconName: "eye-outline",
+  /* Propiedades del componentes interno de ApexChart */
+  chartOptions: {
+    chart: {
+      id: 'views',
+      type: 'bar',
+      sparkline: { enabled: true },
+      dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 }
+    },
+    stroke: { curve: 'smooth', width: 3 },
+    colors: ['#fff'],
+    tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: () => '' } } }
+  },
+  chartSeries: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }],
+});
+
+Explicación:
+
+v-bind="sparkData2" pasa todas las propiedades del objeto sparkData2 como props del componente.
+Se agrupan todas las propiedades en un objeto reactivo (con ref()), permitiendo modificar valores dinámicamente si fuera necesario.
+Es una opción más limpia y escalable cuando tenemos varias instancias del mismo componente con una configuración similar.
+
+
+
+
+
+4. CONFIGURACIÓN DE GRÁFICO DE APEXCHART
+
+
+En este apartado, se detallan  las propiedades necesarias tanto para el componente personalizado (<SparkLine />) como para el gráfico de ApexCharts que integra en su interior.
+
+1. Propiedades del Componente <SparkLine />
+
+SparkLine.vue
+// 📌 Definir Props para datos dinámicos
+defineProps({
+  title: { type: String, default: 'Metrica',  },
+  value: { type: String, default: '#Value',   },
+  chartOptions: {type: Object, required: true, }, // Se espera un objeto de configuración de ApexCharts
+  chartSeries: { type: Array, required: true, }, // Se espera un array con los datos de la serie
+  bgColor: { type: String, default: '', },
+  textColor: { type: String, default: '', },
+  iconName: { type: String, default: 'logo-ionic', },
+});
+
+Propiedad
+Tipo
+Descripción
+title
+String
+Texto que se muestra como título de la métrica.
+value
+String
+Valor numérico o de texto que representa la métrica.
+chartOptions
+Object
+Opciones de configuración del gráfico de ApexCharts.
+chartSeries
+Array
+Datos del gráfico, normalmente un array de números.
+bgColor
+String
+Clase CSS para aplicar un fondo con gradiente.
+textColor
+String
+Clase CSS para definir el color del texto.
+iconName
+String
+Nombre del icono de Ionicons a mostrar en la métrica.
+
+
+2. Propiedades de ApexCharts
+
+Opciones del gráfico:
+// 📊 Configuración del gráfico Sparkline
+const sparkOptionsExample = ref({
+  chart: {
+    id: 'spark1',
+    type: 'area',
+    sparkline: { enabled: true },
+    dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 }
+  },
+  stroke: { curve: 'smooth', width: 3 },
+  colors: ['#fff'],
+ 
+  tooltip: {
+    theme: 'dark',
+    x: { show: false },
+    y: { title: { formatter: () => '' } }
+  },
+});
+
+Datos del gráfico:
+
+
+const sparkSeriesExample = ref([{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }]);
+
+
+
+
+Propiedad
+Valor
+Descripción
+chart.id
+'spark1'
+Identificador único del gráfico.
+chart.type
+'area'
+Tipo de gráfico (line, bar, area, etc.).
+chart.sparkline.enabled
+true
+Activa el modo "sparkline", eliminando ejes y etiquetas.
+chart.dropShadow
+{enabled: true, ...}
+Sombreado a la línea del gráfico.
+stroke.curve
+'smooth'
+Tipo de curva (smooth, straight, etc.).
+stroke.width
+3
+Define el grosor de la línea del gráfico.
+colors
+['#fff']
+Color de la línea del gráfico.
+tooltip.theme
+'dark'
+Establece el tema del tooltip.
+tooltip.x.show
+false
+Oculta la etiqueta del eje X.
+tooltip.y.title.formatter
+() => ''
+Oculta el texto de la etiqueta del eje Y.
+
+
+
+Resultado final 🎉
+
+

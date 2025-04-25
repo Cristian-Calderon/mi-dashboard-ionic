@@ -1,0 +1,37 @@
+/* src/pages/TecnicoPage.css */
+
+/* Base para cada caja */
+.box {
+    background: #1E1E1E;
+    border-radius: 5px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem;
+    color: #fff;
+  }
+  
+  /* Evitar overflow en filas */
+  .row-1,
+  .row-2,
+  .row-3 {
+    overflow: hidden;
+  }
+  
+  /* Responsive heights en desktop */
+  @media (min-width: 992px) {
+    .dashboard-grid {
+      height: 100vh;
+    }
+    .row-1 {
+      height: 20%;
+    }
+    .row-2 {
+      height: 40%;
+    }
+    .row-3 {
+      height: 40%;
+    }
+  }
+  

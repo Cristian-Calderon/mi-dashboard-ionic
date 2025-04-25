@@ -1,0 +1,25 @@
+/* KpiPage.css */
+
+.section-title {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+  
+  .accordion-group {
+    margin-bottom: 2rem;
+  }
+  
+  /* Estados colapsado vs expandido */
+  ion-accordion.accordion-collapsed ion-item[slot="header"],
+  ion-accordion.accordion-collapsing ion-item[slot="header"] {
+    --background: var(--ion-color-light);
+    --color: var(--ion-color-light-contrast);
+  }
+  
+  ion-accordion.accordion-expanded ion-item[slot="header"],
+  ion-accordion.accordion-expanding ion-item[slot="header"] {
+    --background: rgba(var(--ion-color-primary-rgb), 0.14);
+    color: var(--ion-color-primary);
+  }
+  

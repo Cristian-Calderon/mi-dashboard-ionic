@@ -9,3 +9,23 @@
 
 /* Finalmente, tus estilos globales */
 @import "./theme/variables.css";
+
+
+/* index.css */
+ion-item.selected {
+    --background: rgba(var(--ion-color-primary-rgb), 0.14);
+  }
+  ion-item.selected ion-icon {
+    color: var(--ion-color-primary);
+  }
+  ion-item.selected {
+    background: yellow !important;
+  }
+    
+
+  /* NegocioPage.tsx */
+  .box { background:#1E1E1E; border-radius:5px; height:100%; display:flex; justify-content:center; align-items:flex-start; }
+@media (min-width:992px) {
+  ion-grid { height:100%; }
+  /* ajustar alturas de filas 1/2/3 según % */
+}

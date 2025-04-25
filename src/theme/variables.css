@@ -1,0 +1,8 @@
+/* src/theme/variables.css */
+:root {
+    --ion-color-primary: #3880ff;
+    --ion-color-secondary: #0cd1e8;
+    --ion-color-tertiary: #7044ff;
+    /* Añade aquí otras variables de Ionic que quieras personalizar */
+  }
+  

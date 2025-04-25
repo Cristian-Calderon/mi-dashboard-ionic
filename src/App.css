@@ -1,0 +1,11 @@
+/* index.css */
+@import "@ionic/react/css/core.css";
+@import "@ionic/react/css/normalize.css";
+@import "@ionic/react/css/structure.css";
+@import "@ionic/react/css/typography.css";
+/* Importar utilities opcionales si quieres */
+@import "@ionic/react/css/padding.css";
+/* …otros imports… */
+
+/* Finalmente, tus estilos globales */
+@import "./theme/variables.css";

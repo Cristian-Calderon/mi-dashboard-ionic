@@ -1,93 +1,82 @@
 /* src/components/SparkLine.css */
 
-/* Contenedor principal con gradiente de fondo y color de texto */
+/* Contenedor principal con gradiente y flex para distribuir contenido */
 .box-sparkline {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     height: 100%;
     width: 100%;
-    padding: 16px;
+    padding: 8px;
     border-radius: 5px;
     box-sizing: border-box;
-    container-type: inline-size;
+    overflow: hidden;
   }
   
   /* Detalles: icono, título y valor */
   .details {
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
+    margin-bottom: 4px;
   }
   
   .details > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
   }
   
   .details ion-icon {
-    font-size: 2rem;
-    --ionicon-stroke-width: 24px;
+    font-size: 1.2rem;
   }
   
   .details > div > span {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
   
   .details > span {
-    font-size: 2.9rem;
+    font-size: 1.8rem;
+    font-weight: 600;
   }
   
-  /* Sparkline chart ocupa todo el ancho */
-  .sparkline-chart {
+  /* Contenedor del gráfico ocupa todo el espacio restante */
+  .chart-container {
+    flex: 1 1 auto;
+    position: relative;
     width: 100%;
-    min-width: 50px;
+    height: 100%;
   }
   
-  /* Container Query: cuando el componente tiene al menos 324px de ancho, alineamos en fila */
-  @container box-sparkline (min-width: 324px) {
-    .details {
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .details > span {
-      font-size: 6cqmax;
-    }
+  /* Forzar el SVG/canvas interno a llenar el contenedor */
+  .chart-container .apexcharts-canvas,
+  .chart-container .apexcharts-canvas svg,
+  .chart-container .apexcharts-canvas canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* Ajustes de tamaños en desktop */
+  @media (min-width: 992px) {
     .details ion-icon {
-      font-size: 4cqmax;
+      font-size: 1.5rem;
     }
     .details > div > span {
-      font-size: 2cqmax;
+      font-size: 0.8rem;
+    }
+    .details > span {
+      font-size: 2.2rem;
     }
   }
   
-  /* Media Query: pantallas grandes */
-  @media (min-width: 992px) {
-    /* Container Query para anchos <= 356px */
-    @container box-sparkline (max-width: 356px) {
-      .details {
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 16px;
-      }
-      .details > span {
-        font-size: max(1.7rem, 16cqw);
-      }
-      .details ion-icon {
-        font-size: max(1.7rem, 5cqw);
-      }
-      .details > div > span {
-        font-size: max(0.8rem, 5cqw);
-      }
-    }
-  }
-  
-  /* Gradientes para bgColor */
+  /* Gradientes de fondo */
   .gradient-blue { background-image: linear-gradient(135deg, #071c49 10%, #0396FF 100%); }
   .gradient-green { background-image: linear-gradient(135deg, #054d43 10%, #6be084 100%); }
   .gradient-orange { background-image: linear-gradient(135deg, #f31b4a 10%, #e78f30 100%); }

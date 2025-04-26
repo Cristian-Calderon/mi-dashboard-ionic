@@ -1,15 +1,6 @@
 /* src/pages/NegocioPage.css */
 
 /* Base para cada caja */
-.box {
-  background: #1E1E1E;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  color: #fff;
-  box-sizing: border-box;
-}
 
 /* Sparkline row espaciado */
 .row-1 {

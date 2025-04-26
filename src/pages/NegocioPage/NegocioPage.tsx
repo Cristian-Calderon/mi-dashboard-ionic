@@ -19,6 +19,11 @@ import { navigateOutline, eyeOutline, peopleOutline, cashOutline } from 'ionicon
 import styles from './NegocioPage.module.css';
 
 import LineChart from '../../components/LineChart';
+import MiniBarChart from '../../components/MiniBarChart'; // 👈 Importa el nuevo componente
+
+import RadarChart from '../../components/RadarChart';
+import PolarAreaChart from '../../components/PolarAreaChart';
+
 
 
 
@@ -158,18 +163,35 @@ const NegocioPage: React.FC = () => (
             </div>
           </IonCol>
           <IonCol size="12" size-lg="3">
-            <div className={styles.box}>
-              <h3>Meta Cumplida</h3>
-              <DoughnutChart percentage={75} label="Conversiones" />
+            <div className={styles.box} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <h3 style={{ textAlign: 'center' }}>Meta Cumplida</h3>
+              <div style={{ flex: 6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <DoughnutChart percentage={75} label="Conversiones" />
+              </div>
+
+              <div style={{ flex: 4 }}>
+                <MiniBarChart labels={['Objetivo', 'Real']} values={[100, 75]} />
+              </div>
             </div>
+
+
           </IonCol>
         </IonRow>
 
         {/* Fila 3 */}
         <IonRow className={styles['row-3']}>
-          <IonCol size="12" size-lg="6"><div className={styles.box}>Columna 1</div></IonCol>
-          <IonCol size="12" size-lg="6"><div className={styles.box}>Columna 2</div></IonCol>
+          <IonCol size="12" size-lg="6">
+            <div className={styles.box}>
+              <RadarChart />
+            </div>
+          </IonCol>
+          <IonCol size="12" size-lg="6">
+            <div className={styles.box}>
+              <PolarAreaChart />
+            </div>
+          </IonCol>
         </IonRow>
+
       </IonGrid>
     </IonContent>
   </IonPage>

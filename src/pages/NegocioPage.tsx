@@ -35,7 +35,7 @@ const sparkData1 = {
     colors: ['#fff'],
     tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: (): string => '' } } }
   } as ApexOptions,
-  chartSeries: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }]
+  series: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }]
 };
 const sparkData2 = {
   title: 'VIEWS',
@@ -49,7 +49,7 @@ const sparkData2 = {
     colors: ['#fff'],
     tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: (): string => '' } } }
   } as ApexOptions,
-  chartSeries: [{ data: [30, 45, 32, 50, 28, 60, 18, 40, 14, 25] }]
+  series: [{ data: [30, 45, 32, 50, 28, 60, 18, 40, 14, 25] }]
 };
 const sparkData3 = {
   title: 'LEADS',
@@ -63,7 +63,7 @@ const sparkData3 = {
     colors: ['#fff'],
     tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: (): string => '' } } }
   } as ApexOptions,
-  chartSeries: [{ data: [15, 28, 22, 35, 20, 30, 10, 25, 6, 18] }]
+  series: [{ data: [15, 28, 22, 35, 20, 30, 10, 25, 6, 18] }]
 };
 const sparkData4 = {
   title: 'SALES',
@@ -77,7 +77,7 @@ const sparkData4 = {
     colors: ['#fff'],
     tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: (): string => '' } } }
   } as ApexOptions,
-  chartSeries: [{ data: [20, 50, 35, 45, 30, 55, 14, 32, 8, 20] }]
+  series: [{ data: [20, 50, 35, 45, 30, 55, 14, 32, 8, 20] }]
 };
 
 
@@ -121,6 +121,9 @@ const NegocioPage: React.FC = () => (
           <IonCol size="6" size-lg="3"><div className="box"><SparkLine {...sparkData3} /></div></IonCol>
           <IonCol size="6" size-lg="3"><div className="box"><SparkLine {...sparkData4} /></div></IonCol>
         </IonRow>
+        
+        
+        
         {/* Fila 2: placeholder para contenido adicional */}
         <IonRow className="row-2">
           <IonCol size="12" size-lg="9">

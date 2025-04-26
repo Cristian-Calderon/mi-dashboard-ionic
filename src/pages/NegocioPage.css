@@ -1,24 +1,32 @@
-/* NegocioPage.css */
+/* src/pages/NegocioPage.css */
 
-/* Base para cada caja */
+/* Base para cada caja: contendrá sparklines y charts con su propio control de altura */
 .box {
-    background: #1E1E1E;
-    border-radius: 5px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 1rem;
-    color: #fff;
-  }
-  
-  /* Para que la grid ocupe todo el alto en desktop */
-  @media (min-width: 992px) {
-    .dashboard-grid {
-      height: 100vh; /* o el alto que necesites */
-    }
-    .row-1 { height: 20%; }
-    .row-2 { height: 40%; }
-    .row-3 { height: 40%; }
-  }
-  
+  background: #1E1E1E;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  color: #fff;
+  box-sizing: border-box;
+  /* Sin alturas fijas aquí: el contenido (sparklines y charts) define su propia altura */
+}
+
+/* Quitar cualquier control de altura en filas y grid, dejamos que las cajas crezcan según su contenido */
+.row-1,
+.row-2,
+.row-3,
+.dashboard-grid {
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Opcional: espacio entre filas */
+.row-1 {
+  margin-bottom: 1rem;
+}
+.row-2 {
+  margin-bottom: 1rem;
+}

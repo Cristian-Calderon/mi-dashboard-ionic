@@ -1,7 +1,7 @@
 // src/components/SparkLine.tsx
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { ApexOptions, ApexAxisChartSeries } from 'apexcharts';
+import { ApexOptions } from 'apexcharts';
 import { IonIcon } from '@ionic/react';
 import './SparkLine.css';
 
@@ -9,7 +9,7 @@ interface SparkLineProps {
   title: string;
   value: string;
   chartOptions: ApexOptions;
-  chartSeries: ApexAxisChartSeries;
+  series: ApexOptions['series'];
   bgColor?: string;
   textColor?: string;
   icon?: any;
@@ -19,7 +19,7 @@ const SparkLine: React.FC<SparkLineProps> = ({
   title,
   value,
   chartOptions,
-  chartSeries,
+  series,
   bgColor = '',
   textColor = '',
   icon
@@ -53,7 +53,7 @@ const SparkLine: React.FC<SparkLineProps> = ({
       </div>
       <ReactApexChart
         options={chartOptions}
-        series={chartSeries}
+        series={series}
         type={chartOptions.chart?.type as any || 'area'}
         height={chartHeight}
         width="100%"

@@ -88,17 +88,43 @@ const mainChartData = {
   datasets: [{
     label: 'Visitas',
     data: [120, 190, 300, 500, 200, 300],
-    fill: false,
-    tension: 0.4
+    fill: true,                                 // si quieres área rellena
+    tension: 0.4,
+    borderColor: 'rgba(255,165,0,1)',           // naranja sólido
+    backgroundColor: 'rgba(255,165,0,0.2)',     // naranja suave semi-transparente
+    pointBackgroundColor: 'rgba(255,165,0,1)',  // color de los puntos
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(255,165,0,1)'
   }]
 };
+
 const mainChartOptions = {
   responsive: true,
+  maintainAspectRatio: false,
+  devicePixelRatio: window.devicePixelRatio,
   plugins: {
-    legend: { position: 'top' },
-    title: { display: true, text: 'Visitas Mensuales' }
+    legend: {
+      labels: { color: '#fff' }
+    },
+    title: {
+      display: true,
+      text: 'Visitas Mensuales',
+      color: '#fff'
+    }
+  },
+  scales: {
+    x: {
+      ticks: { color: '#fff' },
+      grid: { color: 'rgba(255,255,255,0.1)' }
+    },
+    y: {
+      ticks: { color: '#fff' },
+      grid: { color: 'rgba(255,255,255,0.1)' }
+    }
   }
 };
+
 
 
 const NegocioPage: React.FC = () => (
@@ -121,20 +147,22 @@ const NegocioPage: React.FC = () => (
           <IonCol size="6" size-lg="3"><div className="box"><SparkLine {...sparkData3} /></div></IonCol>
           <IonCol size="6" size-lg="3"><div className="box"><SparkLine {...sparkData4} /></div></IonCol>
         </IonRow>
-        
-        
-        
+
+
+
         {/* Fila 2: placeholder para contenido adicional */}
+        {/* Fila 2: Gráfico principal grande */}
         <IonRow className="row-2">
           <IonCol size="12" size-lg="9">
             <div className="box">
-              <LineChart data={mainChartData} options={mainChartOptions} />
+              <div className="line-chart-container">
+                <LineChart data={mainChartData} options={mainChartOptions} />
+              </div>
             </div>
           </IonCol>
-          {/* Columna pequeña puede ser otro gráfico o KPI estático */}
           <IonCol size="12" size-lg="3">
-            <div className="box" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <h3 style={{ margin: 0, marginBottom: '0.5rem' }}>Meta Cumplida</h3>
+            <div className="box">
+              <h3>Meta Cumplida</h3>
               <DoughnutChart percentage={75} label="Conversiones" />
             </div>
           </IonCol>

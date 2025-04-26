@@ -1,32 +1,54 @@
 /* src/pages/NegocioPage.css */
 
-/* Base para cada caja: contendrá sparklines y charts con su propio control de altura */
+/* Base para cada caja */
 .box {
   background: #1E1E1E;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   padding: 1rem;
   color: #fff;
   box-sizing: border-box;
-  /* Sin alturas fijas aquí: el contenido (sparklines y charts) define su propia altura */
 }
 
-/* Quitar cualquier control de altura en filas y grid, dejamos que las cajas crezcan según su contenido */
-.row-1,
-.row-2,
-.row-3,
-.dashboard-grid {
-  height: auto !important;
-  max-height: none !important;
-}
-
-/* Opcional: espacio entre filas */
+/* Sparkline row espaciado */
 .row-1 {
   margin-bottom: 1rem;
 }
 .row-2 {
   margin-bottom: 1rem;
+}
+.row-3 {
+  margin-bottom: 1rem;
+}
+
+/* Contenedor para LineChart: altura fija que puedes ajustar */
+.line-chart-container {
+  width: 100%;
+  height: 300px;  /* ajusta: invitación a aumentar para desktop */
+  max-height: 500px;
+}
+
+/* Asegurar que el canvas ocupa todo el contenedor */
+.line-chart-container canvas,
+.line-chart-container .chartjs-render-monitor {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Responsive: menos altura en móvil */
+@media (max-width: 991px) {
+  .line-chart-container {
+    height: 200px;
+  }
+}
+
+/* El resto de filas/fluidos dependen de su contenido */
+.dashboard-grid,
+.row-1,
+.row-2,
+.row-3 {
+  height: auto !important;
+  max-height: none !important;
 }

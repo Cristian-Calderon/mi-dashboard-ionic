@@ -12,7 +12,7 @@ import {
   IonRow,
   IonCol
 } from '@ionic/react';
-import './TecnicoPage.css';
+import './TecnicoPage.module.css';
 
 const TecnicoPage: React.FC = () => (
   <IonPage>

@@ -21,9 +21,9 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Route, Redirect, useLocation } from 'react-router-dom';
 import { rocketOutline, rocketSharp, pulseOutline, pulseSharp, speedometerOutline, speedometerSharp } from 'ionicons/icons';
 
-import NegocioPage from './pages/NegocioPage';
-import TecnicoPage from './pages/TecnicoPage';
-import KpiPage from './pages/KpiPage';
+import NegocioPage from './pages/NegocioPage/NegocioPage';
+import TecnicoPage from './pages/TecnicoPage/TecnicoPage';
+import KpiPage from './pages/KpiPage/KpiPage';
 import './index.css';
 
 const appPages = [

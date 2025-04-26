@@ -12,13 +12,13 @@ import {
   IonButtons,
   IonMenuButton
 } from '@ionic/react';
-import SparkLine from '../components/SparkLine';
-import DoughnutChart from '../components/DoughnutChart';
+import SparkLine from '../../components/SparkLine';
+import DoughnutChart from '../../components/DoughnutChart';
 import { ApexOptions } from 'apexcharts';
 import { navigateOutline, eyeOutline, peopleOutline, cashOutline } from 'ionicons/icons';
-import './NegocioPage.css';
+import './NegocioPage.module.css';
 
-import LineChart from '../components/LineChart';
+import LineChart from '../../components/LineChart';
 
 
 

@@ -1,4 +1,4 @@
-// src/pages/KpiPage.tsx
+// src/pages/KpiPage/KpiPage.tsx
 import React from 'react';
 import {
   IonPage,
@@ -14,7 +14,7 @@ import {
   IonLabel,
   IonList
 } from '@ionic/react';
-import './KpiPage.css';
+import styles from './KpiPage.module.css'; // <-- Cambio aquí
 
 // Definición de la estructura de datos para un objetivo SMART
 type SmartElement = {
@@ -105,7 +105,7 @@ const KpiPage: React.FC = () => (
     </IonHeader>
 
     <IonContent className="ion-padding">
-      <h1 className="section-title">🚀 KPIs de Negocio</h1>
+      <h1 className={styles.sectionTitle}>🚀 KPIs de Negocio</h1> {/* Cambio aquí */}
       <IonAccordionGroup multiple>
         {smartGoals.map(item => (
           <IonAccordion key={item.id} value={item.id.toString()}>
@@ -126,7 +126,7 @@ const KpiPage: React.FC = () => (
         ))}
       </IonAccordionGroup>
 
-      <h1 className="section-title">📈 KPIs Técnicos</h1>
+      <h1 className={styles.sectionTitle}>📈 KPIs Técnicos</h1> {/* Cambio aquí */}
       <IonAccordionGroup multiple>
         {smartGoals.map(item => (
           <IonAccordion key={item.id} value={item.id.toString()}>

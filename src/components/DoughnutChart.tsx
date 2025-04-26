@@ -5,15 +5,16 @@ import {
   Chart as ChartJS,
   ArcElement,
   Tooltip,
-  Legend
+  Legend,
+  ChartOptions,
 } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface DoughnutChartProps {
-  percentage: number;      // Valor numérico entre 0 y 100
-  label: string;           // Nombre del KPI
-  colors?: string[];       // Colores para el doughnut
+  percentage: number;
+  label: string;
+  colors?: string[];
 }
 
 const DoughnutChart: React.FC<DoughnutChartProps> = ({
@@ -32,15 +33,33 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({
     ],
   };
 
-  const options = {
-    cutout: '70%',           // Grosor del anillo
+  const options: ChartOptions<'doughnut'> = {
+    cutout: '70%',
     plugins: {
       tooltip: { enabled: true },
-      legend: { display: false }
-    }
+      legend: { display: false },
+    },
+    responsive: true,
+    maintainAspectRatio: false,
   };
 
-  return <Doughnut data={data} options={options} />;
+  return (
+    <div style={{ width: '100%', height: '200px', position: 'relative' }}>
+      <Doughnut data={data} options={options} />
+      {/* NÚMERO EN EL CENTRO */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
+        color: '#0396FF'
+      }}>
+        {percentage}%
+      </div>
+    </div>
+  );
 };
 
 export default DoughnutChart;

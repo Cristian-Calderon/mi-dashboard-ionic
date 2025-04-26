@@ -14,7 +14,7 @@ import {
   IonLabel,
   IonList
 } from '@ionic/react';
-import styles from './KpiPage.module.css'; // <-- Cambio aquí
+import styles from './KpiPage.module.css';
 
 // Definición de la estructura de datos para un objetivo SMART
 type SmartElement = {

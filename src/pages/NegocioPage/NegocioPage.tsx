@@ -16,7 +16,7 @@ import SparkLine from '../../components/SparkLine';
 import DoughnutChart from '../../components/DoughnutChart';
 import { ApexOptions } from 'apexcharts';
 import { navigateOutline, eyeOutline, peopleOutline, cashOutline } from 'ionicons/icons';
-import './NegocioPage.module.css';
+import styles from './NegocioPage.module.css';
 
 import LineChart from '../../components/LineChart';
 
@@ -139,39 +139,36 @@ const NegocioPage: React.FC = () => (
     </IonHeader>
 
     <IonContent className="ion-padding">
-      <IonGrid className="dashboard-grid">
-        {/* Fila 1: 4 sparklines */}
-        <IonRow className="row-1">
-          <IonCol size="6" size-lg="3"><div className="box"><SparkLine {...sparkData1} /></div></IonCol>
-          <IonCol size="6" size-lg="3"><div className="box"><SparkLine {...sparkData2} /></div></IonCol>
-          <IonCol size="6" size-lg="3"><div className="box"><SparkLine {...sparkData3} /></div></IonCol>
-          <IonCol size="6" size-lg="3"><div className="box"><SparkLine {...sparkData4} /></div></IonCol>
+      <IonGrid className={styles.dashboardGrid}>
+        {/* Fila 1 */}
+        <IonRow className={styles['row-1']}>
+          <IonCol size="6" size-lg="3"><div className={styles.box}><SparkLine {...sparkData1} /></div></IonCol>
+          <IonCol size="6" size-lg="3"><div className={styles.box}><SparkLine {...sparkData2} /></div></IonCol>
+          <IonCol size="6" size-lg="3"><div className={styles.box}><SparkLine {...sparkData3} /></div></IonCol>
+          <IonCol size="6" size-lg="3"><div className={styles.box}><SparkLine {...sparkData4} /></div></IonCol>
         </IonRow>
 
-
-
-        {/* Fila 2: placeholder para contenido adicional */}
-        {/* Fila 2: Gráfico principal grande */}
-        <IonRow className="row-2">
+        {/* Fila 2 */}
+        <IonRow className={styles['row-2']}>
           <IonCol size="12" size-lg="9">
-            <div className="box">
-              <div className="line-chart-container">
+            <div className={styles.box}>
+              <div className={styles.lineChartContainer}>
                 <LineChart data={mainChartData} options={mainChartOptions} />
               </div>
             </div>
           </IonCol>
           <IonCol size="12" size-lg="3">
-            <div className="box">
+            <div className={styles.box}>
               <h3>Meta Cumplida</h3>
               <DoughnutChart percentage={75} label="Conversiones" />
             </div>
           </IonCol>
         </IonRow>
 
-        {/* Fila 3: placeholder para contenido adicional */}
-        <IonRow className="row-3">
-          <IonCol size="12" size-lg="6"><div className="box">Columna 1</div></IonCol>
-          <IonCol size="12" size-lg="6"><div className="box">Columna 2</div></IonCol>
+        {/* Fila 3 */}
+        <IonRow className={styles['row-3']}>
+          <IonCol size="12" size-lg="6"><div className={styles.box}>Columna 1</div></IonCol>
+          <IonCol size="12" size-lg="6"><div className={styles.box}>Columna 2</div></IonCol>
         </IonRow>
       </IonGrid>
     </IonContent>

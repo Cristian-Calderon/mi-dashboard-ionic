@@ -7,7 +7,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Legend
 } from 'recharts';
 
 const data = [
@@ -26,15 +27,21 @@ const ScatterChartTecnico: React.FC = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1rem'
+      flexDirection: 'column'
     }}>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <ScatterChart>
           <CartesianGrid />
-          <XAxis type="number" dataKey="x" name="Duración" stroke="#ffffff" />
-          <YAxis type="number" dataKey="y" name="Ventas" stroke="#ffffff" />
-          <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-          <Scatter name="Ventas vs Duración" data={data} fill="#8884d8" />
+          <XAxis type="number" dataKey="x" name="Duración" stroke="#ffffff" tick={{ fontSize: 12 }} />
+          <YAxis type="number" dataKey="y" name="Ventas" stroke="#ffffff" tick={{ fontSize: 12 }} />
+          <Tooltip />
+          <Legend verticalAlign="top" height={36} />
+          <Scatter
+            name="Duración vs Ventas"
+            data={data}
+            fill="#2884d8"
+            shape="circle" /* 👈 aseguramos forma de círculo */
+          />
         </ScatterChart>
       </ResponsiveContainer>
     </div>

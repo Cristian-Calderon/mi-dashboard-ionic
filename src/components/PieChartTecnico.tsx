@@ -1,6 +1,6 @@
 // src/components/PieChartTecnico.tsx
 import React from 'react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
   { name: 'Correcto', value: 400 },
@@ -8,7 +8,7 @@ const data = [
   { name: 'Pendientes', value: 300 },
 ];
 
-const COLORS = ['#00C49F', '#FF8042', '#FFBB28']; // Verde, Naranja, Amarillo
+const COLORS = ['#00C49F', '#FF8042', '#FFBB28'];
 
 const PieChartTecnico: React.FC = () => {
   return (
@@ -16,11 +16,11 @@ const PieChartTecnico: React.FC = () => {
       width: '100%',
       height: '100%',
       display: 'flex',
+      flexDirection: 'column', /* 👈 muy importante */
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1rem'
     }}>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             data={data}
@@ -28,8 +28,7 @@ const PieChartTecnico: React.FC = () => {
             nameKey="name"
             cx="50%"
             cy="50%"
-            outerRadius={60}
-            fill="#8884d8"
+            outerRadius={70}
             label
           >
             {data.map((entry, index) => (
@@ -37,6 +36,7 @@ const PieChartTecnico: React.FC = () => {
             ))}
           </Pie>
           <Tooltip />
+          <Legend layout="horizontal" verticalAlign="bottom" align="center" />
         </PieChart>
       </ResponsiveContainer>
     </div>

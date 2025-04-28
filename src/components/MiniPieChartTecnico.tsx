@@ -1,6 +1,6 @@
 // src/components/MiniPieChartTecnico.tsx
 import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'; // 👈 Importar Legend
 
 const data = [
   { name: 'Activo', value: 80 },
@@ -15,9 +15,9 @@ const MiniPieChartTecnico: React.FC = () => {
       width: '100%',
       height: '100%',
       display: 'flex',
+      flexDirection: 'column', // 👈 Muy importante para que la leyenda quede debajo
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1rem'
     }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
@@ -27,14 +27,15 @@ const MiniPieChartTecnico: React.FC = () => {
             nameKey="name"
             cx="50%"
             cy="50%"
-            outerRadius={40} /* más pequeño que un PieChart normal */
-            innerRadius={20}
+            outerRadius={90}
+            innerRadius={50}
             label
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
+          <Legend layout="horizontal" verticalAlign="bottom" align="center" /> {/* 👈 Aquí la leyenda */}
         </PieChart>
       </ResponsiveContainer>
     </div>

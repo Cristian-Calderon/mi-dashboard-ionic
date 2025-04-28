@@ -9,6 +9,9 @@ const data = [
   { name: 'Abr', visitas: 200 },
   { name: 'May', visitas: 278 },
   { name: 'Jun', visitas: 189 },
+  { name: 'Jul', visitas: 239 },
+  { name: 'Ago', visitas: 349 },
+  { name: 'Sep', visitas: 450 },
 ];
 
 const AreaChartTecnico: React.FC = () => {
@@ -19,9 +22,8 @@ const AreaChartTecnico: React.FC = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1rem'
     }}>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data}>
           <XAxis dataKey="name" stroke="#ffffff" />
           <YAxis stroke="#ffffff" />

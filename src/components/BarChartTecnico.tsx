@@ -17,9 +17,8 @@ const BarChartTecnico: React.FC = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1rem'
     }}>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data}>
           <XAxis dataKey="name" stroke="#ffffff" />
           <YAxis stroke="#ffffff" />

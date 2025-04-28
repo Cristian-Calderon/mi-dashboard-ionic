@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
+  Legend, // 👈 Importa Legend
 } from 'recharts';
 
 const data = [
@@ -28,16 +29,16 @@ const ComposedChartTecnico: React.FC = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1rem'
     }}>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data}>
           <CartesianGrid stroke="#333" />
-          <XAxis dataKey="name" stroke="#ffffff" />
-          <YAxis stroke="#ffffff" />
+          <XAxis dataKey="name" stroke="#ffffff" tick={{ fontSize: 12 }} />
+          <YAxis stroke="#ffffff" tick={{ fontSize: 12 }} />
           <Tooltip />
-          <Bar dataKey="ventas" barSize={20} fill="#413ea0" />
-          <Line type="monotone" dataKey="visitas" stroke="#ff7300" />
+          <Legend layout="horizontal" verticalAlign="top" align="center" /> {/* 👈 Aquí agregamos la leyenda */}
+          <Bar dataKey="ventas" barSize={30} fill="#413ea0" name="Ventas" /> {/* name importante */}
+          <Line type="monotone" dataKey="visitas" stroke="#ff7300" strokeWidth={2} name="Visitas" /> {/* name importante */}
         </ComposedChart>
       </ResponsiveContainer>
     </div>

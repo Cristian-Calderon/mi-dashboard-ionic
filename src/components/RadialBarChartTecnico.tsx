@@ -1,12 +1,12 @@
 // src/components/RadialBarChartTecnico.tsx
 import React from 'react';
-import { RadialBarChart, RadialBar, ResponsiveContainer, Tooltip } from 'recharts';
+import { RadialBarChart, RadialBar, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
 const data = [
   {
     name: 'Progreso',
-    value: 75, // porcentaje
-    fill: '#00C49F', // color verde bonito
+    value: 75,
+    fill: '#00C49F',
   },
 ];
 
@@ -18,9 +18,10 @@ const RadialBarChartTecnico: React.FC = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1rem'
+      flexDirection: 'column', /* Muy importante */
+      position: 'relative'
     }}>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <RadialBarChart
           cx="50%"
           cy="50%"
@@ -32,14 +33,26 @@ const RadialBarChartTecnico: React.FC = () => {
           endAngle={-180}
         >
           <RadialBar
-            minAngle={15}
             background
-            clockWise
             dataKey="value"
           />
           <Tooltip />
+          <Legend verticalAlign="bottom" height={36} />
         </RadialBarChart>
       </ResponsiveContainer>
+
+      {/* 👇 Texto central */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
+        color: '#00C49F',
+      }}>
+        75%
+      </div>
     </div>
   );
 };

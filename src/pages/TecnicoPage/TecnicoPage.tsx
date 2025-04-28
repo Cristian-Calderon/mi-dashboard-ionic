@@ -22,9 +22,6 @@ import TinyLineChartTecnico from '../../components/TinyLineChartTecnico';
 import RadialBarChartTecnico from '../../components/RadialBarChartTecnico';
 import ScatterChartTecnico from '../../components/ScatterChartTecnico';
 
-
-
-
 const TecnicoPage: React.FC = () => (
   <IonPage>
     <IonHeader>
@@ -46,17 +43,17 @@ const TecnicoPage: React.FC = () => (
             </div>
           </IonCol>
 
-          <IonCol size="6" size-lg="4">
+          <IonCol size="12" size-lg="4">
             <div className={styles.box}>
               <BarChartTecnico />
             </div>
           </IonCol>
-          <IonCol size="6" size-lg="4">
+
+          <IonCol size="12" size-lg="4">
             <div className={styles.box}>
               <PieChartTecnico />
             </div>
           </IonCol>
-
         </IonRow>
 
         {/* Fila 2: invertir orden en desktop */}
@@ -72,7 +69,6 @@ const TecnicoPage: React.FC = () => (
               <ComposedChartTecnico />
             </div>
           </IonCol>
-
         </IonRow>
 
         {/* Fila 3: 3 columnas con proporciones 4.5, 4.5, 3 */}
@@ -94,7 +90,6 @@ const TecnicoPage: React.FC = () => (
               <ScatterChartTecnico />
             </div>
           </IonCol>
-
         </IonRow>
       </IonGrid>
     </IonContent>

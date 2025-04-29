@@ -31,7 +31,7 @@ const MiniPieChartTecnico: React.FC = () => {
             innerRadius={50}
             label
           >
-            {data.map((entry, index) => (
+            {data.map((_, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>

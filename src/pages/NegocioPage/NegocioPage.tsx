@@ -19,9 +19,12 @@ import { navigateOutline, eyeOutline, peopleOutline, cashOutline } from 'ionicon
 import styles from './NegocioPage.module.css';
 
 import LineChart from '../../components/LineChart';
+// grafico pequeno verde
 import MiniBarChart from '../../components/MiniBarChart'; // 👈 Importa el nuevo componente
 
+// Ante penultimo
 import RadarChart from '../../components/RadarChart';
+// ultimo
 import PolarAreaChart from '../../components/PolarAreaChart';
 
 

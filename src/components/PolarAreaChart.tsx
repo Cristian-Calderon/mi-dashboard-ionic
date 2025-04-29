@@ -13,7 +13,7 @@ ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
 const PolarAreaChart: React.FC = () => {
   const data = {
-    labels: ['Producto A', 'Producto B', 'Producto C', 'Producto D'],
+    labels: ['Suscripciones Mensuales', 'Cursos Premium', 'Ebooks', 'Consultorías'],
     datasets: [
       {
         data: [11, 16, 7, 14],
@@ -21,7 +21,8 @@ const PolarAreaChart: React.FC = () => {
       },
     ],
   };
-
+  
+  
   const options = {
     responsive: true,
     maintainAspectRatio: false,

@@ -15,7 +15,8 @@ ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, 
 
 const RadarChart: React.FC = () => {
   const data = {
-    labels: ['Ventas', 'Marketing', 'Soporte', 'Desarrollo', 'Diseño', 'Operaciones'],
+    labels: ['KDA', 'GPM', 'XPM', 'Tasa de Victoria', 'Last Hits', 'Participación en kills'],
+
     datasets: [
       {
         label: 'Este mes',

@@ -13,16 +13,17 @@ ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
 const PolarAreaChart: React.FC = () => {
   const data = {
-    labels: ['Suscripciones Mensuales', 'Cursos Premium', 'Ebooks', 'Consultorías'],
+    labels: ['Carry', 'Mid', 'Offlane', 'Support', 'Hard Support'],
     datasets: [
       {
-        data: [11, 16, 7, 14],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+        data: [22, 18, 14, 25, 21],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
       },
     ],
   };
-  
-  
+
+
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,

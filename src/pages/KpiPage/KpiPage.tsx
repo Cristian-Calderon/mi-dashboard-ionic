@@ -33,113 +33,118 @@ type SmartGoal = {
 const smartGoals: SmartGoal[] = [
   {
     id: 1,
-    title: 'Incrementar CLICKS en el sitio web',
-    description: 'Incrementar el número de clics en un 50% (de 800 a 1200) en los siguientes 30 días, optimizando la estrategia de contenido y llamados a la acción, para aumentar el tráfico general del sitio de cara al nuevo lanzamiento.',
+    title: 'Incrementar clics en perfiles de héroes',
+    description: 'Incrementar el número de clics en perfiles de héroes desde 1,000 hasta 1,250 en los próximos 30 días, mediante recomendaciones personalizadas basadas en el rendimiento reciente del jugador.',
     smart: [
-      { letter: 'S', content: 'Incrementar el número de clics en el sitio web en un 50%' },
-      { letter: 'M', content: 'De 800 a 1200 clics' },
-      { letter: 'A', content: 'optimizando la estrategia de contenido y llamados a la acción' },
-      { letter: 'R', content: 'para aumentar el tráfico y preparar el lanzamiento del nuevo producto' },
+      { letter: 'S', content: 'Incrementar los clics en perfiles de héroes en un 25%' },
+      { letter: 'M', content: 'De 1,000 a 1,250 clics totales' },
+      { letter: 'A', content: 'mediante recomendaciones personalizadas según rendimiento reciente' },
+      { letter: 'R', content: 'para mejorar la exploración de estadísticas y engagement del usuario' },
       { letter: 'T', content: 'en los próximos 30 días' }
     ]
   },
   {
     id: 2,
-    title: 'Incrementar VIEWS de productos',
-    description: 'Incrementar las visualizaciones de productos en un 20% (de 1,500 a 1,800) en los próximos 12 meses, optimizando la estrategia de marketing digital para impulsar las ventas futuras.',
+    title: 'Aumentar visualizaciones de análisis de partidas',
+    description: 'Aumentar las vistas de análisis de partidas desde 1,900 hasta 2,400 en los próximos 30 días, destacando los reportes post-juego y facilitando acceso directo desde el perfil del jugador.',
     smart: [
-      { letter: 'S', content: 'Incrementar las visualizaciones de productos en un 20%' },
-      { letter: 'M', content: 'De 1,500 a 1,800 views' },
-      { letter: 'A', content: 'optimizando la estrategia de marketing digital y campañas promocionales' },
-      { letter: 'R', content: 'para impulsar ventas futuras y mejorar el posicionamiento de productos' },
-      { letter: 'T', content: 'durante los próximos 12 meses' }
+      { letter: 'S', content: 'Aumentar las visualizaciones de análisis de partidas en un 26%' },
+      { letter: 'M', content: 'De 1,900 a 2,400 visualizaciones' },
+      { letter: 'A', content: 'destacando reportes post-juego y accesos directos' },
+      { letter: 'R', content: 'para ayudar al jugador a identificar errores y mejorar su rendimiento' },
+      { letter: 'T', content: 'en los próximos 30 días' }
     ]
   },
   {
     id: 3,
-    title: 'Incrementar generación de LEADS',
-    description: 'Incrementar el número de leads calificados en un 30% (de 1,500 a 2,000) para finales del primer trimestre del próximo año, mediante campañas de marketing digital enfocadas en contenido de valor.',
+    title: 'Incrementar usuarios con cuentas vinculadas',
+    description: 'Aumentar el número de perfiles de Dota 2 vinculados a la plataforma de 2,000 a 2,600 en los próximos 45 días, incentivando el registro con análisis exclusivos y comparativas personalizadas.',
     smart: [
-      { letter: 'S', content: 'Incrementar el número de leads calificados en un 30%' },
-      { letter: 'M', content: 'De 1,500 a 2,000 leads' },
-      { letter: 'A', content: 'lanzando campañas de marketing digital y estrategias de contenido' },
-      { letter: 'R', content: 'para aumentar la base de clientes potenciales y oportunidades de venta' },
-      { letter: 'T', content: 'para finales del primer trimestre del próximo año' }
+      { letter: 'S', content: 'Incrementar usuarios con perfiles vinculados en un 30%' },
+      { letter: 'M', content: 'De 2,000 a 2,600 perfiles vinculados' },
+      { letter: 'A', content: 'ofreciendo análisis exclusivos y comparativas personalizadas como incentivo' },
+      { letter: 'R', content: 'para mejorar la personalización del contenido y engagement del usuario' },
+      { letter: 'T', content: 'en los próximos 45 días' }
     ]
   }
   ,
   {
     id: 4,
-    title: 'Incrementar ingresos por ventas',
-    description: 'Incrementar los ingresos por ventas en un 25% (de 500k€ a 625k€) en los próximos 6 meses, mediante la optimización de estrategias de upselling y cross-selling en la tienda online.',
+    title: 'Incrementar ingresos por suscripciones premium',
+    description: 'Aumentar los ingresos por suscripciones premium de 600k€ a 750k€ en los próximos 60 días, promoviendo funcionalidades exclusivas como análisis avanzado y comparaciones entre jugadores.',
     smart: [
-      { letter: 'S', content: 'Incrementar los ingresos por ventas en un 25%' },
-      { letter: 'M', content: 'De 500k€ a 625k€' },
-      { letter: 'A', content: 'optimizando estrategias de upselling y cross-selling' },
-      { letter: 'R', content: 'para maximizar el valor de compra promedio de los clientes' },
-      { letter: 'T', content: 'en los próximos 6 meses' }
+      { letter: 'S', content: 'Incrementar los ingresos por suscripciones premium en un 25%' },
+      { letter: 'M', content: 'De 600k€ a 750k€ en ventas' },
+      { letter: 'A', content: 'promocionando funcionalidades avanzadas y análisis personalizados' },
+      { letter: 'R', content: 'para mejorar la monetización y fidelización del usuario avanzado' },
+      { letter: 'T', content: 'en los próximos 60 días' }
     ]
   },
   {
     id: 5,
-    title: 'Aumentar el tráfico mensual del sitio web',
-    description: 'Incrementar el tráfico mensual del sitio web en un 40% (de 300 visitas promedio a 420) en los próximos 6 meses, implementando campañas de SEO y estrategias de contenido orgánico.',
+    title: 'Incrementar visitas mensuales a la plataforma',
+    description: 'Aumentar las visitas mensuales promedio a Dotabuff de 300 a 450 durante los próximos 3 meses, aprovechando los parches de balance y eventos de temporada para impulsar el tráfico orgánico.',
     smart: [
-      { letter: 'S', content: 'Incrementar el tráfico mensual del sitio web en un 40%' },
-      { letter: 'M', content: 'De 300 a 420 visitas promedio por mes' },
-      { letter: 'A', content: 'implementando campañas de SEO y contenido orgánico' },
-      { letter: 'R', content: 'para fortalecer la presencia en buscadores y aumentar la captación de leads' },
-      { letter: 'T', content: 'durante los próximos 6 meses' }
+      { letter: 'S', content: 'Aumentar visitas mensuales promedio en un 50%' },
+      { letter: 'M', content: 'De 300 a 450 visitas promedio por mes' },
+      { letter: 'A', content: 'aprovechando actualizaciones de juego y contenido estacional' },
+      { letter: 'R', content: 'para atraer más jugadores y aumentar la visibilidad del contenido' },
+      { letter: 'T', content: 'en los próximos 3 meses' }
     ]
-  },
+  }
+  ,
   {
     id: 6,
-    title: 'Incrementar tasa de conversiones',
-    description: 'Incrementar la tasa de conversiones del sitio web del 60% al 75% en los próximos 4 meses, mediante la optimización del embudo de ventas y mejoras en la experiencia de usuario.',
+    title: 'Alcanzar 75% de winrate con el héroe más jugado',
+    description: 'Aumentar la tasa de victorias con el héroe más jugado hasta el 75% en las próximas 40 partidas, utilizando análisis post-juego y builds recomendadas por la plataforma.',
     smart: [
-      { letter: 'S', content: 'Incrementar la tasa de conversiones del 60% al 75%' },
-      { letter: 'M', content: 'Subir la tasa de conversiones en un 15%' },
-      { letter: 'A', content: 'optimizando el embudo de ventas y mejorando la experiencia de usuario' },
-      { letter: 'R', content: 'para aumentar la cantidad de clientes finales y ventas cerradas' },
-      { letter: 'T', content: 'en un plazo de 4 meses' }
+      { letter: 'S', content: 'Alcanzar 75% de winrate con el héroe más jugado' },
+      { letter: 'M', content: 'Comparando victorias/derrotas en las últimas 40 partidas' },
+      { letter: 'A', content: 'siguiendo builds recomendadas y revisando análisis post-juego' },
+      { letter: 'R', content: 'para mejorar el desempeño competitivo del jugador' },
+      { letter: 'T', content: 'en las próximas 40 partidas jugadas con ese héroe' }
     ]
-  },
+  }
+  ,
   {
     id: 7,
-    title: 'Alcanzar el 100% de objetivos de adquisición de usuarios',
-    description: 'Lograr el 100% del objetivo de adquisición de nuevos usuarios para el trimestre, pasando del 75% actual al 100% en los próximos 30 días, a través de campañas promocionales y mejoras en el proceso de registro.',
+    title: 'Balancear el rendimiento entre Radiant y Dire',
+    description: 'Reducir la diferencia de winrate entre Radiant (56%) y Dire (48%) a un margen menor al 5% durante las próximas 20 partidas, identificando patrones de juego con ayuda de los reportes post-partida.',
     smart: [
-      { letter: 'S', content: 'Alcanzar el 100% de adquisición de nuevos usuarios este trimestre' },
-      { letter: 'M', content: 'Actualmente al 75%, objetivo: 100%' },
-      { letter: 'A', content: 'mediante campañas promocionales y optimización del registro' },
-      { letter: 'R', content: 'para expandir la base de usuarios activos de la aplicación' },
-      { letter: 'T', content: 'en los próximos 30 días' }
+      { letter: 'S', content: 'Reducir la diferencia de winrate entre Radiant y Dire a menos del 5%' },
+      { letter: 'M', content: 'Actualmente: 56% Radiant vs 48% Dire' },
+      { letter: 'A', content: 'analizando partidas y ajustando estrategias según el lado del mapa' },
+      { letter: 'R', content: 'para mejorar la consistencia del jugador sin importar el bando' },
+      { letter: 'T', content: 'en las próximas 20 partidas' }
     ]
-  },
+  }
+  ,
   {
     id: 8,
-    title: 'Mejorar el desempeño interdepartamental',
-    description: 'Incrementar el rendimiento general de las áreas clave del negocio en al menos un 20% respecto al mes anterior, midiendo avances mensuales en ventas, marketing, soporte, desarrollo, diseño y operaciones.',
+    title: 'Mejorar el rendimiento integral del jugador',
+    description: 'Incrementar al menos un 15% el promedio de indicadores clave como KDA, GPM y participación en kills durante este mes, en comparación con el mes anterior, mediante el análisis de estadísticas detalladas por héroe.',
     smart: [
-      { letter: 'S', content: 'Mejorar el rendimiento general de las áreas clave en un 20%' },
-      { letter: 'M', content: 'Comparando métricas entre el mes actual y el anterior' },
-      { letter: 'A', content: 'optimizando procesos internos y mejorando la colaboración entre equipos' },
-      { letter: 'R', content: 'para incrementar la eficiencia global y la satisfacción del cliente' },
-      { letter: 'T', content: 'en el transcurso del próximo mes' }
+      { letter: 'S', content: 'Mejorar en un 15% el rendimiento general del jugador' },
+      { letter: 'M', content: 'KDA, GPM, XPM, winrate, last hits y participación en kills' },
+      { letter: 'A', content: 'usando el radar de rendimiento y los análisis por héroe en Dotabuff' },
+      { letter: 'R', content: 'para subir de MMR y fortalecer el desempeño competitivo' },
+      { letter: 'T', content: 'durante el presente mes' }
     ]
-  },
+  }
+  ,
   {
     id: 9,
-    title: 'Aumentar la participación de productos digitales de alto valor',
-    description: 'Incrementar la participación en ventas de productos digitales de alto valor (como cursos premium y consultorías), elevando su cuota combinada al 60% del total de ingresos en los próximos 2 meses.',
+    title: 'Diversificar la experiencia en roles jugados',
+    description: 'Equilibrar la distribución de roles jugados para que ningún rol represente más del 30% del total, durante las próximas 50 partidas, con el fin de fomentar versatilidad y conocimiento global del juego.',
     smart: [
-      { letter: 'S', content: 'Incrementar la participación de cursos premium y consultorías al 60% del total' },
-      { letter: 'M', content: 'Actualmente representan aproximadamente 50% (16 + 14 de 48)' },
-      { letter: 'A', content: 'reforzando campañas dirigidas y destacando su valor en la web' },
-      { letter: 'R', content: 'para maximizar ingresos con productos de mayor margen' },
-      { letter: 'T', content: 'en los próximos 2 meses' }
+      { letter: 'S', content: 'Lograr que ningún rol supere el 30% del total de partidas jugadas' },
+      { letter: 'M', content: 'Analizando la distribución de roles en las últimas 50 partidas' },
+      { letter: 'A', content: 'alternando intencionalmente entre carry, mid, offlane y supports' },
+      { letter: 'R', content: 'para aumentar la versatilidad y comprensión del metajuego' },
+      { letter: 'T', content: 'durante las próximas 50 partidas' }
     ]
-  }];
+  }
+];
 
 const technicalSmartGoals: SmartGoal[] = [
   {

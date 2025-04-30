@@ -32,61 +32,65 @@ import PolarAreaChart from '../../components/PolarAreaChart';
 
 // Datos para los sparklines
 const sparkData1 = {
-  title: 'CLICKS',
-  value: '1234',
+  title: 'HERO CLICKS',
+  value: '1000', // valor actual realista alineado al KPI
   bgColor: 'gradient-blue',
   textColor: 'white',
   icon: navigateOutline,
   chartOptions: {
-    chart: { id: 'clicks', type: 'area', sparkline: { enabled: true }, dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 } },
+    chart: { id: 'hero_clicks', type: 'area', sparkline: { enabled: true }, dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 } },
     stroke: { curve: 'smooth', width: 3 },
     colors: ['#fff'],
     tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: (): string => '' } } }
   } as ApexOptions,
-  series: [{ data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21] }]
+  series: [{ data: [80, 100, 90, 105, 110, 120, 140, 160, 180, 200] }]
 };
+
 const sparkData2 = {
-  title: 'VIEWS',
-  value: '1982',
+  title: 'MATCH ANALYSIS VIEWS',
+  value: '1900',
   bgColor: 'gradient-pink',
   textColor: 'white',
   icon: eyeOutline,
   chartOptions: {
-    chart: { id: 'views', type: 'bar', sparkline: { enabled: true }, dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 } },
+    chart: { id: 'match_views', type: 'bar', sparkline: { enabled: true }, dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 } },
     stroke: { curve: 'smooth', width: 3 },
     colors: ['#fff'],
     tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: (): string => '' } } }
   } as ApexOptions,
-  series: [{ data: [30, 45, 32, 50, 28, 60, 18, 40, 14, 25] }]
+  series: [{ data: [100, 150, 170, 160, 200, 210, 220, 250, 230, 210] }]
 };
+
 const sparkData3 = {
-  title: 'LEADS',
-  value: '2011',
+  title: 'NEW LINKED PROFILES',
+  value: '2000',
   bgColor: 'gradient-orange',
   textColor: 'white',
   icon: peopleOutline,
   chartOptions: {
-    chart: { id: 'leads', type: 'line', sparkline: { enabled: true }, dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 } },
+    chart: { id: 'linked_profiles', type: 'line', sparkline: { enabled: true }, dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 } },
     stroke: { curve: 'straight', width: 3 },
     colors: ['#fff'],
     tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: (): string => '' } } }
   } as ApexOptions,
-  series: [{ data: [15, 28, 22, 35, 20, 30, 10, 25, 6, 18] }]
+  series: [{ data: [100, 120, 130, 150, 170, 190, 210, 220, 230, 250] }]
 };
+
 const sparkData4 = {
-  title: 'SALES',
-  value: '627k€',
+  title: 'PREMIUM SUBSCRIPTIONS',
+  value: '600k€',
   bgColor: 'gradient-green',
   textColor: 'white',
   icon: cashOutline,
   chartOptions: {
-    chart: { id: 'sales', type: 'area', sparkline: { enabled: true }, dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 } },
+    chart: { id: 'premium_sales', type: 'area', sparkline: { enabled: true }, dropShadow: { enabled: true, top: 1, left: 1, blur: 2, opacity: 0.5 } },
     stroke: { curve: 'smooth', width: 3 },
     colors: ['#fff'],
     tooltip: { theme: 'dark', x: { show: false }, y: { title: { formatter: (): string => '' } } }
   } as ApexOptions,
-  series: [{ data: [20, 50, 35, 45, 30, 55, 14, 32, 8, 20] }]
+  series: [{ data: [80, 100, 130, 120, 150, 170, 190, 210, 240, 250] }]
 };
+
 
 
 // Datos de LineChart: 
@@ -167,13 +171,13 @@ const NegocioPage: React.FC = () => (
           </IonCol>
           <IonCol size="12" size-lg="3">
             <div className={styles.box} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <h3 style={{ textAlign: 'center' }}>Meta Cumplida</h3>
               <div style={{ flex: 6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <DoughnutChart percentage={75} label="Conversiones" />
+                <DoughnutChart percentage={75} label="Winrate con heroe favorito" />
               </div>
 
               <div style={{ flex: 4 }}>
-                <MiniBarChart labels={['Objetivo', 'Real']} values={[100, 75]} />
+                <MiniBarChart labels={['Radiant Winrate', 'Dire Winrate']} values={[56, 48]} />
+
               </div>
             </div>
 

@@ -1,5 +1,4 @@
-// src/components/AreaChartTecnico.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AreaChart,
   Area,
@@ -13,7 +12,7 @@ import {
 
 interface ChartData {
   name: string;
-  total: number;
+  criticalErrors: number;
 }
 
 const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -21,45 +20,20 @@ const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', '
 const AreaChartTecnico: React.FC = () => {
   const [data, setData] = useState<ChartData[]>([]);
 
-  const fetchSalesData = async () => {
-    try {
-      const res = await fetch('https://api.escuelajs.co/api/v1/products');
-      const products = await res.json();
-  
-      const monthTotals: { [key: string]: number } = {};
-  
-      products.forEach((product: any, index: number) => {
-        const monthIndex = index % 12;
-        const month = months[monthIndex];
-        monthTotals[month] = (monthTotals[month] || 0) + 1;
-      });
-  
-      const chartData = months.map((month) => ({
-        name: month,
-        total: (monthTotals[month] || 0) + Math.floor(Math.random() * 6), // 🔥 Aquí
-      }));
-  
-      setData(chartData);
-    } catch (error) {
-      console.error('Error fetching sales data:', error);
-    }
-  };
-  
-
   useEffect(() => {
-    fetchSalesData(); // Primera carga
+    // Generar datos simulados
+    const simulatedData = months.map((month) => ({
+      name: month,
+      criticalErrors: Math.floor(Math.random() * 50), // 🔥 entre 0 y 50 errores simulados
+    }));
 
-    const interval = setInterval(() => {
-      fetchSalesData(); // Actualizar cada 10 segundos
-    }, 10000);
-
-    return () => clearInterval(interval);
+    setData(simulatedData);
   }, []);
 
   return (
     <div style={{
       width: '100%',
-      height: '100%',
+      height: '300px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -71,7 +45,13 @@ const AreaChartTecnico: React.FC = () => {
           <YAxis stroke="#ffffff" />
           <Tooltip />
           <Legend verticalAlign="top" />
-          <Area type="monotone" dataKey="total" stroke="#82ca9d" fill="#82ca9d" name="Ventas" />
+          <Area
+            type="monotone"
+            dataKey="criticalErrors"
+            stroke="#FF6B6B"
+            fill="#FF6B6B"
+            name="Errores Críticos"
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>

@@ -1,50 +1,37 @@
-/* src/pages/TecnicoPage.module.css */
-
-/* Base para cada caja */
 .box {
   background: #1E1E1E;
   border-radius: 5px;
-  height: 350px; /* 👈 altura FÍSICA */
+  height: 100%;
+  min-height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
   color: #fff;
 }
 
-/* Responsive específico */
+ion-row,
+ion-col {
+  height: 100%;
+}
+
+.dashboard-grid {
+  row-gap: 1rem;
+  column-gap: 1rem;
+}
+
 @media (min-width: 992px) {
-  .box {
-    height: 100%;
+  .dashboard-grid {
+    display: grid;
+    grid-template-rows: auto auto auto; /* 👈 altura por fila */
+    row-gap: 1rem;
+    column-gap: 1rem;
   }
 }
 
-
-
-/* Grid principal */
-.dashboard-grid {
-  height: 100vh;
-  row-gap: 1rem; /* Espacio entre filas */
-  column-gap: 1rem; /* Espacio entre columnas */
-}
-
-/* Filas */
-.row-1,
-.row-2,
-.row-3 {
-  overflow: hidden;
-  min-height: 300px;
-}
-
-/* Responsive en móviles */
 @media (max-width: 991px) {
   .dashboard-grid {
-    height: auto; /* 👈 Cambiamos aquí */
-  }
-
-  .row-1,
-  .row-2,
-  .row-3 {
-    min-height: 200px;
+    display: block;
+    min-height: calc(100vh - 56px);
   }
 }

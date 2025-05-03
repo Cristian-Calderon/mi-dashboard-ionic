@@ -19,7 +19,7 @@ import PieChartTecnico from '../../components/PieChartTecnico';
 import MiniPieChartTecnico from '../../components/MiniPieChartTecnico';
 import ComposedChartTecnico from '../../components/ComposedChartTecnico';
 import TinyLineChartTecnico from '../../components/TinyLineChartTecnico';
-import RadialBarChartTecnico from '../../components/RadialBarChartTecnico';
+import LineChartTecnico from '../../components/LineChartTecnico';
 import ScatterChartTecnico from '../../components/ScatterChartTecnico';
 
 const TecnicoPage: React.FC = () => (
@@ -81,7 +81,7 @@ const TecnicoPage: React.FC = () => (
 
           <IonCol size="12" size-lg="4.5">
             <div className={styles.box}>
-              <RadialBarChartTecnico />
+              <LineChartTecnico />
             </div>
           </IonCol>
 

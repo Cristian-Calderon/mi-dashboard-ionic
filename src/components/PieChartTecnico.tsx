@@ -1,22 +1,21 @@
-// src/components/PieChartTecnico.tsx
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { name: 'Correcto', value: 400 },
-  { name: 'Errores', value: 100 },
-  { name: 'Pendientes', value: 300 },
+  { name: 'Unit Tests Pasados', value: 420 },
+  { name: 'Unit Tests Fallidos', value: 80 },
+  { name: 'Unit Tests Pendientes', value: 150 },
 ];
 
-const COLORS = ['#00C49F', '#FF8042', '#FFBB28'];
+const COLORS = ['#28a745', '#dc3545', '#ffc107']; // verde, rojo, amarillo
 
 const PieChartTecnico: React.FC = () => {
   return (
     <div style={{
       width: '100%',
-      height: '100%',
+      height: '300px',
       display: 'flex',
-      flexDirection: 'column', /* 👈 muy importante */
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
     }}>

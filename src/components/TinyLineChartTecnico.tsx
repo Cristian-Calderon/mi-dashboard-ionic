@@ -1,4 +1,3 @@
-// src/components/TinyLineChartTecnico.tsx
 import React, { useEffect, useState } from 'react';
 import {
   LineChart,
@@ -13,7 +12,7 @@ import {
 
 interface ChartData {
   name: string;
-  total: number;
+  cpuUsage: number;
 }
 
 const days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
@@ -21,48 +20,18 @@ const days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
 const TinyLineChartTecnico: React.FC = () => {
   const [data, setData] = useState<ChartData[]>([]);
 
-  const fetchElectronicsSales = async () => {
-    try {
-      const res = await fetch('https://api.escuelajs.co/api/v1/products');
-      const products = await res.json();
-
-      // Filtrar solo productos de categoría "electronics"
-      const electronics = products.filter((p: any) => p.category?.name?.toLowerCase() === 'electronics');
-
-      // Distribuirlos entre días de la semana
-      const dayTotals: { [key: string]: number } = {};
-
-      electronics.forEach((product: any, index: number) => {
-        const dayIndex = index % 7;
-        const day = days[dayIndex];
-        dayTotals[day] = (dayTotals[day] || 0) + 1;
-      });
-
-      const chartData = days.map((day) => ({
-        name: day,
-        total: (dayTotals[day] || 0) + Math.floor(Math.random() * 3), // 👈 Variación aleatoria pequeña
-      }));
-
-      setData(chartData);
-    } catch (error) {
-      console.error('Error fetching electronics data:', error);
-    }
-  };
-
   useEffect(() => {
-    fetchElectronicsSales(); // Primera carga
-
-    const interval = setInterval(() => {
-      fetchElectronicsSales(); // Actualizar cada 10 segundos
-    }, 10000);
-
-    return () => clearInterval(interval);
+    const simulatedData = days.map((day) => ({
+      name: day,
+      cpuUsage: Math.floor(30 + Math.random() * 50), // 🔥 Simula uso entre 30% y 80%
+    }));
+    setData(simulatedData);
   }, []);
 
   return (
     <div style={{
       width: '100%',
-      height: '100%',
+      height: '300px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -74,7 +43,14 @@ const TinyLineChartTecnico: React.FC = () => {
           <YAxis stroke="#ffffff" tick={{ fontSize: 10 }} />
           <Tooltip />
           <Legend verticalAlign="top" />
-          <Line type="monotone" dataKey="total" stroke="#8884d8" strokeWidth={2} name="Ventas Electrónica" dot />
+          <Line
+            type="monotone"
+            dataKey="cpuUsage"
+            stroke="#FF6B6B"
+            strokeWidth={2}
+            name="Uso CPU (%)"
+            dot
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>

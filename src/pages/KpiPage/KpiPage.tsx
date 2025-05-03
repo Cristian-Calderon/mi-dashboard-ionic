@@ -149,17 +149,105 @@ const smartGoals: SmartGoal[] = [
 const technicalSmartGoals: SmartGoal[] = [
   {
     id: 1,
-    title: 'Reducir el tiempo de respuesta de la API',
-    description: 'Reducir el tiempo medio de respuesta de la API a menos de 200 ms en los próximos 3 meses, mediante optimización de endpoints y uso de caché.',
+    title: 'Reducir errores críticos mensuales',
+    description: 'Reducir la cantidad de errores críticos (500, fallos de API) en un 30% durante los próximos 6 meses, reforzando las pruebas automáticas y la monitorización en producción.',
     smart: [
-      { letter: 'S', content: 'Reducir el tiempo medio de respuesta a menos de 200 ms' },
-      { letter: 'M', content: 'Medir respuesta promedio en ms' },
-      { letter: 'A', content: 'optimizando endpoints críticos y aplicando caching' },
-      { letter: 'R', content: 'para mejorar el rendimiento de la aplicación y la experiencia de usuario' },
+      { letter: 'S', content: 'Reducir los errores críticos mensuales en un 30%' },
+      { letter: 'M', content: 'Comparando el promedio de fallos por mes en los últimos 6 meses' },
+      { letter: 'A', content: 'implementando pruebas automáticas y monitoreo continuo' },
+      { letter: 'R', content: 'para mejorar la estabilidad y disponibilidad de la plataforma' },
+      { letter: 'T', content: 'en los próximos 6 meses' }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Reducir errores por módulo crítico',
+    description: 'Disminuir los errores del módulo con mayor incidencia (actualmente API con 120 errores) en un 40% en los próximos 2 meses, mediante optimización y pruebas específicas.',
+    smart: [
+      { letter: 'S', content: 'Reducir errores en el módulo API en un 40%' },
+      { letter: 'M', content: 'De 120 a 72 errores' },
+      { letter: 'A', content: 'optimizando código y reforzando tests automatizados' },
+      { letter: 'R', content: 'para mejorar la estabilidad general del sistema' },
+      { letter: 'T', content: 'en los próximos 2 meses' }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Incrementar cobertura de tests unitarios',
+    description: 'Aumentar la cantidad de tests unitarios ejecutados y disminuir los fallidos en un 50% en los próximos 3 meses, asegurando al menos un 80% de cobertura del código.',
+    smart: [
+      { letter: 'S', content: 'Reducir tests fallidos en un 50% y alcanzar 80% de cobertura' },
+      { letter: 'M', content: 'Reducir fallos de 80 a 40; medir cobertura en porcentaje' },
+      { letter: 'A', content: 'mejorando los casos de prueba y cubriendo escenarios críticos' },
+      { letter: 'R', content: 'para garantizar estabilidad y prevenir errores en producción' },
       { letter: 'T', content: 'en los próximos 3 meses' }
     ]
   },
-  // Agregar más aquí...
+  {
+    id: 4,
+    title: 'Mantener al menos el 95% de los servicios activos',
+    description: 'Garantizar que al menos el 95% de los servicios backend estén activos durante los próximos 3 meses, implementando monitoreo proactivo y alertas automatizadas.',
+    smart: [
+      { letter: 'S', content: 'Mantener el 95% de servicios activos' },
+      { letter: 'M', content: 'Actualmente: 80% activo, objetivo: llegar a 95%' },
+      { letter: 'A', content: 'implementando monitoreo y alertas automáticas' },
+      { letter: 'R', content: 'para garantizar alta disponibilidad y experiencia de usuario' },
+      { letter: 'T', content: 'en los próximos 3 meses' }
+    ]
+  },
+  {
+    id: 5,
+    title: 'Optimizar rendimiento del backend ante alta demanda',
+    description: 'Reducir el tiempo medio de respuesta de la API a menos de 180 ms mientras se gestiona un incremento del 20% en las peticiones totales, asegurando la escalabilidad del sistema durante los próximos 3 meses.',
+    smart: [
+      { letter: 'S', content: 'Reducir tiempo medio de respuesta a <180 ms y aumentar peticiones en un 20%' },
+      { letter: 'M', content: 'De 9000 a 10800 peticiones, de 240 ms a <180 ms' },
+      { letter: 'A', content: 'mejorando el código backend, aplicando caching y optimizando base de datos' },
+      { letter: 'R', content: 'para garantizar que el sistema pueda escalar sin degradar rendimiento' },
+      { letter: 'T', content: 'en los próximos 3 meses' }
+    ]
+  },
+  {
+    id: 6,
+    title: 'Optimizar uso promedio de CPU semanal',
+    description: 'Reducir el uso promedio de CPU a menos del 70% en todos los días de la semana, implementando mejoras en la eficiencia del backend durante el próximo mes.',
+    smart: [
+      { letter: 'S', content: 'Mantener el uso promedio de CPU <70% todos los días' },
+      { letter: 'M', content: 'Actualmente entre 30%-80%, objetivo ≤70%' },
+      { letter: 'A', content: 'optimizando procesos backend y aplicando mejoras de rendimiento' },
+      { letter: 'R', content: 'para evitar saturación del servidor y mejorar la estabilidad' },
+      { letter: 'T', content: 'durante el próximo mes' }
+    ]
+  }
+
+  ,
+  {
+    id: 7,
+    title: 'Mantener velocidad de red estable durante picos de carga',
+    description: 'Garantizar que la velocidad de conexión promedio se mantenga por encima de 80 Mbps incluso durante horas pico, monitoreando en tiempo real y aplicando mejoras en la infraestructura durante los próximos 2 meses.',
+    smart: [
+      { letter: 'S', content: 'Mantener velocidad promedio superior a 80 Mbps durante picos de tráfico' },
+      { letter: 'M', content: 'Actualmente promedia entre 50-100 Mbps, objetivo mínimo 80 Mbps' },
+      { letter: 'A', content: 'implementando balanceo de carga y monitoreo activo' },
+      { letter: 'R', content: 'para asegurar tiempos de respuesta rápidos y experiencia fluida para el usuario' },
+      { letter: 'T', content: 'en los próximos 2 meses' }
+    ]
+  }
+
+  , {
+    id: 8,
+    title: 'Mantener latencia por debajo de 300 ms bajo alta concurrencia',
+    description: 'Reducir la latencia promedio a menos de 300 ms incluso con 1,000 usuarios concurrentes, optimizando backend y escalando infraestructura en los próximos 3 meses.',
+    smart: [
+      { letter: 'S', content: 'Mantener latencia promedio <300 ms con alta concurrencia' },
+      { letter: 'M', content: 'Actualmente llega a 900 ms con 1,000 usuarios; objetivo ≤300 ms' },
+      { letter: 'A', content: 'optimizando backend, balanceadores y arquitectura de escalado' },
+      { letter: 'R', content: 'para garantizar experiencia rápida incluso en alta demanda' },
+      { letter: 'T', content: 'en los próximos 3 meses' }
+    ]
+  }
+
+
 ];
 
 

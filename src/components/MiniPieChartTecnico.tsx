@@ -1,21 +1,20 @@
-// src/components/MiniPieChartTecnico.tsx
 import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'; // 👈 Importar Legend
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
 const data = [
-  { name: 'Activo', value: 80 },
-  { name: 'Inactivo', value: 20 },
+  { name: 'Servicios Activos', value: 8 },
+  { name: 'Servicios Inactivos', value: 2 },
 ];
 
-const COLORS = ['#00C49F', '#FF8042'];
+const COLORS = ['#28a745', '#dc3545']; // verde y rojo
 
 const MiniPieChartTecnico: React.FC = () => {
   return (
     <div style={{
       width: '100%',
-      height: '100%',
+      height: '300px',
       display: 'flex',
-      flexDirection: 'column', // 👈 Muy importante para que la leyenda quede debajo
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
     }}>
@@ -35,7 +34,7 @@ const MiniPieChartTecnico: React.FC = () => {
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
-          <Legend layout="horizontal" verticalAlign="bottom" align="center" /> {/* 👈 Aquí la leyenda */}
+          <Legend layout="horizontal" verticalAlign="bottom" align="center" />
         </PieChart>
       </ResponsiveContainer>
     </div>

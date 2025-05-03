@@ -1,4 +1,3 @@
-// src/components/ScatterChartTecnico.tsx
 import React from 'react';
 import {
   ScatterChart,
@@ -12,18 +11,18 @@ import {
 } from 'recharts';
 
 const data = [
-  { x: 10, y: 30 },
-  { x: 30, y: 200 },
-  { x: 50, y: 100 },
-  { x: 70, y: 180 },
-  { x: 90, y: 250 },
+  { x: 100, y: 20 },   // 100 registros, 20 ms
+  { x: 500, y: 60 },
+  { x: 1000, y: 110 },
+  { x: 5000, y: 250 },
+  { x: 10000, y: 500 },
 ];
 
 const ScatterChartTecnico: React.FC = () => {
   return (
     <div style={{
       width: '100%',
-      height: '100%',
+      height: '300px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -32,15 +31,15 @@ const ScatterChartTecnico: React.FC = () => {
       <ResponsiveContainer width="100%" height="100%">
         <ScatterChart>
           <CartesianGrid />
-          <XAxis type="number" dataKey="x" name="Duración" stroke="#ffffff" tick={{ fontSize: 12 }} />
-          <YAxis type="number" dataKey="y" name="Ventas" stroke="#ffffff" tick={{ fontSize: 12 }} />
-          <Tooltip />
+          <XAxis type="number" dataKey="x" name="Registros" stroke="#ffffff" tick={{ fontSize: 12 }} />
+          <YAxis type="number" dataKey="y" name="Tiempo (ms)" stroke="#ffffff" tick={{ fontSize: 12 }} />
+          <Tooltip cursor={{ strokeDasharray: '3 3' }} />
           <Legend verticalAlign="top" height={36} />
           <Scatter
-            name="Duración vs Ventas"
+            name="Registros vs Tiempo"
             data={data}
-            fill="#2884d8"
-            shape="circle" /* 👈 aseguramos forma de círculo */
+            fill="#00C49F"
+            shape="circle"
           />
         </ScatterChart>
       </ResponsiveContainer>

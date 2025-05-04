@@ -149,8 +149,7 @@ const NegocioPage: React.FC = () => (
         <IonTitle>🚀 Negocio</IonTitle>
       </IonToolbar>
     </IonHeader>
-
-    <IonContent className="ion-padding">
+    <IonContent fullscreen className="ion-padding-horizontal">
       <IonGrid className={styles.dashboardGrid}>
         {/* Fila 1 */}
         <IonRow className={styles['row-1']}>

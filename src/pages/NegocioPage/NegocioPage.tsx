@@ -13,7 +13,6 @@ import {
   IonMenuButton
 } from '@ionic/react';
 import SparkLine from '../../components/SparkLine';
-import DoughnutChart from '../../components/DoughnutChart';
 import { ApexOptions } from 'apexcharts';
 import { navigateOutline, eyeOutline, peopleOutline, cashOutline } from 'ionicons/icons';
 import styles from './NegocioPage.module.css';
@@ -21,8 +20,6 @@ import styles from './NegocioPage.module.css';
 
 
 import LineChart from '../../components/LineChart';
-// grafico pequeno verde
-import MiniBarChart from '../../components/MiniBarChart'; // 👈 Importa el nuevo componente
 
 // Ante penultimo
 import RadarChart from '../../components/RadarChart';

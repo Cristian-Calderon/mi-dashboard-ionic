@@ -4,7 +4,8 @@
 .box {
   background: #1E1E1E;
   border-radius: 5px;
-  height: 100%;          /* hereda el alto de la fila en desktop */
+  height: 100%;
+  /* ocupa todo el alto que le asigne el grid */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +13,8 @@
   padding: 1rem;
   box-sizing: border-box;
   color: #fff;
+  min-height: 0;
+  /* evita colapso de flex children */
 }
 
 /* 2. Espaciado general */
@@ -20,27 +23,71 @@
   column-gap: 1rem;
 }
 
-/* 3. Desktop (>=992px): grid de 3 filas sin scroll */
+/* 3. Contenedor para el gráfico de línea */
+.lineChartContainer {
+  width: 100%;
+  height: 100%;
+  /* llenará la caja en desktop */
+  min-height: 0;
+}
+
+/* Contenedor flex para Doughnut + MiniBar */
+.smallChartsBox {
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;   /* ajusta si quieres más espacio */
+  box-sizing: border-box;
+}
+
+.smallChartsTop {
+  height: 200px;       /* mismo alto que el DoughnutChart (200px) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smallChartsBottom {
+  flex: 1;             /* el resto de altura libre */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* 5. Cajas para Radar y PolarArea llenas */
+.fullChartBox {
+  display: flex;
+  align-items: stretch;
+  /* permite que el gráfico llene verticalmente */
+  justify-content: center;
+}
+
+/* 6. Filas sin márgenes extra */
+.row-1,
+.row-2,
+.row-3 {
+  margin-bottom: 0;
+}
+
+/* ===== Desktop (>=992px): grid de 3 filas sin scroll ===== */
 @media (min-width: 992px) {
   .dashboardGrid {
     display: grid;
-    grid-template-rows: auto 1fr 1fr;      /* sparks / línea+mini / radar+polar */
-    height: calc(100vh - 56px);           /* toda la ventana menos el header */
+    grid-template-rows: auto 1fr 1fr;
+    /* fila 1: sparklines, filas 2 y 3 reparten */
+    height: calc(100vh - var(--ion-toolbar-height));
+    /* ocupa todo menos el header */
     row-gap: 1rem;
     column-gap: 1rem;
   }
 
   .box {
-    min-height: 0;   /* ya no forzamos min-height aquí */
-  }
-
-  .lineChartContainer {
-    width: 100%;
-    height: 100%;   /* llena toda la box */
+    min-height: 0;
+    /* cede espacio al grid */
   }
 }
 
-/* 4. Móvil/Tablet (<992px): flujo normal */
+/* ===== Móvil/Tablet (<992px): flujo normal ===== */
 @media (max-width: 991px) {
   .dashboardGrid {
     display: block;
@@ -48,17 +95,12 @@
   }
 
   .box {
-    min-height: 120px;  /* caja un poco más compacta en móvil */
+    min-height: 120px;
+    /* asegura visibilidad mínima */
   }
 
   .lineChartContainer {
-    height: 200px;      /* igual que antes */
+    height: 200px;
+    /* alta específica en móvil */
   }
-}
-
-/* 5. Filas sin márgenes extra */
-.row-1,
-.row-2,
-.row-3 {
-  margin-bottom: 0;
 }

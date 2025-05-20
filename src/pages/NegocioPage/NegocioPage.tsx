@@ -18,6 +18,8 @@ import { ApexOptions } from 'apexcharts';
 import { navigateOutline, eyeOutline, peopleOutline, cashOutline } from 'ionicons/icons';
 import styles from './NegocioPage.module.css';
 
+
+
 import LineChart from '../../components/LineChart';
 // grafico pequeno verde
 import MiniBarChart from '../../components/MiniBarChart'; // 👈 Importa el nuevo componente
@@ -27,7 +29,8 @@ import RadarChart from '../../components/RadarChart';
 // ultimo
 import PolarAreaChart from '../../components/PolarAreaChart';
 
-
+import WinrateGauge from '../../components/WinrateGauge';
+import RadiantDireBarChart from '../../components/RadiantDireBarChart';
 
 
 // Datos para los sparklines
@@ -169,34 +172,29 @@ const NegocioPage: React.FC = () => (
             </div>
           </IonCol>
           <IonCol size="12" size-lg="3">
-            <div className={styles.box} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ flex: 6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <DoughnutChart percentage={75} label="Winrate con heroe favorito" />
-              </div>
-
-              <div style={{ flex: 4 }}>
-                <MiniBarChart labels={['Radiant Winrate', 'Dire Winrate']} values={[56, 48]} />
-
-              </div>
+            <div className={styles.box} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <WinrateGauge percentage={75} />
+              <RadiantDireBarChart data={[{ name: 'Radiant', value: 56 }, { name: 'Dire', value: 48 }]} />
             </div>
-
-
           </IonCol>
+
+
         </IonRow>
 
         {/* Fila 3 */}
         <IonRow className={styles['row-3']}>
           <IonCol size="12" size-lg="6">
-            <div className={styles.box}>
+            <div className={`${styles.box} ${styles.fullChartBox}`}>
               <RadarChart />
             </div>
           </IonCol>
           <IonCol size="12" size-lg="6">
-            <div className={styles.box}>
+            <div className={`${styles.box} ${styles.fullChartBox}`}>
               <PolarAreaChart />
             </div>
           </IonCol>
         </IonRow>
+
 
       </IonGrid>
     </IonContent>
